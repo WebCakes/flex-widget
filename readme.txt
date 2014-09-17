@@ -10,7 +10,7 @@ A *Flexible* Wordpress widget that gives extreme flexibility to sidebars in Word
 == Description ==
 
 The Flex Widget is specifically designed with templating in mind.  
-The main idea of the plugin is to provide all the structure necessary for your template within the sidebar register using arguments.
+The main idea of the plugin is to allow the structure necessary for your widget and template to be customized in a custom widget/sidebar specific template. ( See FAQ Section )
 
 In the case that not all the flex widgets have the same structure within the widget sidebar, using the template system you can set a Template Name within the widget.  
 Using the Template Name, you can filter what to output based on the value within your custom template. ( See FAQ Section )
