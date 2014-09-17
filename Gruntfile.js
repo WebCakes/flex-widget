@@ -21,9 +21,9 @@ module.exports = function( grunt ) {
 		makepot: {
 			plugin: {
 				options: {
-					mainFile: 'simple-image-widget.php',
+					mainFile: 'flex-widget.php',
 					potHeaders: {
-						'report-msgid-bugs-to': 'http://wordpress.org/support/plugin/simple-image-widget',
+						'report-msgid-bugs-to': 'https://github.com/WebCakes/flex-widget/issues',
 						'language': 'en',
 						'plural-forms': 'nplurals=2; plural=(n != 1);',
 						'x-poedit-basepath': '../',
@@ -65,8 +65,8 @@ module.exports = function( grunt ) {
 				'--source=.',
 				'--destination=docs',
 				'--exclude=*/.git*,*/docs/*,*/node_modules/*,*/tests/*',
-				'--title=Simple Image Widget Documentation',
-				'--main=SimpleImageWdiget',
+				'--title=Flex Widget Documentation',
+				'--main=FlexWdiget',
 				'--report=docs/_report.xml'
 			],
 			opts: { stdio: 'inherit' }
