@@ -3,7 +3,7 @@
  * Legacy support.
  *
  * @package   FlexWidget
- * @copyright Copyright (c) 2014, Blazer Six, Inc.
+ * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     4.0.0
  */
@@ -39,7 +39,7 @@ class Flex_Widget_Legacy {
 	 * @return string HTML output.
 	 */
 	public function output( $output, $args, $instance, $id_base ) {
-		if ( 'simpleimage' != $id_base || ! empty( $instance['image_id'] ) || empty( $instance['image'] ) ) {
+		if ( 'flex' != $id_base || ! empty( $instance['image_id'] ) || empty( $instance['image'] ) ) {
 			return $output;
 		}
 
@@ -78,7 +78,7 @@ class Flex_Widget_Legacy {
 	 * @return array
 	 */
 	public function fields( $fields, $id_base ) {
-		if ( 'simpleimage' == $id_base && is_flex_widget_legacy() ) {
+		if ( 'flex' == $id_base && is_flex_widget_legacy() ) {
 			$key = array_search( 'image_size', $fields );
 			if ( false !== $key ) {
 				unset( $fields[ $key ] );
@@ -139,7 +139,7 @@ class Flex_Widget_Legacy {
 	 * @return array Sanitized settings.
 	 */
 	public function sanitize_data( $instance, $new_instance, $old_instance, $id_base ) {
-		if ( 'simpleimage' == $id_base ) {
+		if ( 'flex' == $id_base ) {
 			// Legacy image URL.
 			$instance['image'] = empty( $new_instance['image'] ) ? '' : esc_url_raw( $new_instance['image'] );
 			if ( empty( $instance['image'] ) ) {

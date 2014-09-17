@@ -1,22 +1,29 @@
 {
   "name": "flex-widget",
-  "version": "4.1.1",
-  "description": "A simple WordPress image widget.",
+  "version": "1.0.0",
+  "description": "A Flexible WordPress widget with templating in mind.",
   "main": "Gruntfile.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blazersix/flex-widget.git"
+    "url": "https://github.com/WebCakes/flex-widget"
   },
-  "author": {
-    "name": "Brady Vercher",
-    "email": "brady@blazersix.com",
-    "url": "http://www.blazersix.com/"
-  },
+	"authors": [
+		{
+			"name": "Brady Vercher",
+			"email": "brady@blazersix.com",
+			"homepage": "http://www.blazersix.com/"
+		},
+		{
+			"name": "James Mann",
+			"email": "james@webcakes.ca",
+			"homepage": "http://www.webcakes.ca/"
+		}
+	],
   "license": "GPL-2.0+",
   "bugs": {
-    "url": "https://github.com/blazersix/flex-widget/issues"
+    "url": "https://github.com/WebCakes/flex-widget/issues"
   },
-  "homepage": "https://github.com/blazersix/flex-widget",
+  "homepage": "https://github.com/WebCakes/flex-widget",
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.8.0",

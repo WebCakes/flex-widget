@@ -3,7 +3,7 @@
  * Flex Widget
  *
  * @package   FlexWidget
- * @copyright Copyright (c) 2014, Blazer Six, Inc.
+ * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     3.0.0
  */

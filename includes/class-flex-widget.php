@@ -3,7 +3,7 @@
  * The image widget.
  *
  * @package   FlexWidget
- * @copyright Copyright (c) 2014, Blazer Six, Inc.
+ * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     3.0.0
  */
@@ -39,14 +39,14 @@ class Flex_Widget extends WP_Widget {
 	 * )
 	 */
 	public function __construct( $id_base = false, $name = false, $widget_options = array(), $control_options = array() ) {
-		$id_base = ( $id_base ) ? $id_base : 'simpleimage'; // Legacy ID.
-		$name    = ( $name ) ? $name : __( 'Image', 'flex-widget' );
+		$id_base = ( $id_base ) ? $id_base : 'flex'; // Legacy ID.
+		$name    = ( $name ) ? $name : __( 'Flex Widget', 'flex-widget' );
 
 		$widget_options = wp_parse_args(
 			$widget_options,
 			array(
-				'classname'   => 'widget_simpleimage', // Legacy class name.
-				'description' => __( 'An image from your Media Library.', 'flex-widget' ),
+				'classname'   => 'widget_flex', // Legacy class name.
+				'description' => __( 'A widget built with custom templating in mind.', 'flex-widget' ),
 			)
 		);
 

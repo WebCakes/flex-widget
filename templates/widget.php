@@ -6,7 +6,7 @@
  * child theme to make edits.
  *
  * @package   FlexWidget
- * @copyright Copyright (c) 2014, Blazer Six, Inc.
+ * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     4.0.0
  */

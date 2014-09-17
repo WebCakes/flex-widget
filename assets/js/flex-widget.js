@@ -93,7 +93,7 @@ window.FlexWidget = window.FlexWidget || {};
 			frame.state( 'library' ).on( 'select', function() {
 				var selection = this.get( 'selection' );
 				frame.control.setAttachments( selection );
-				frame.control.$el.trigger( 'selectionChange.simpleimagewidget', [ selection ] );
+				frame.control.$el.trigger( 'selectionChange.flexwidget', [ selection ] );
 			});
 
 			return frame;
@@ -179,7 +179,7 @@ window.FlexWidget = window.FlexWidget || {};
 		});
 
 		// Update the image preview and size dropdown in a widget when an image is selected.
-		$body.on( 'selectionChange.simpleimagewidget', '.flex-widget-control', function( e, selection ) {
+		$body.on( 'selectionChange.flexwidget', '.flex-widget-control', function( e, selection ) {
 			var $control = $( e.target ),
 				$sizeField = $control.closest( '.flex-widget-form' ).find( 'select.image-size' ),
 				model = selection.first(),

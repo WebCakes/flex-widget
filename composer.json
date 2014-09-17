@@ -1,20 +1,25 @@
 {
-	"name": "blazersix/flex-widget",
-	"description": "A simple WordPress image widget.",
+	"name": "WebCakes/flex-widget",
+	"description": "A Flexible WordPress widget with templating in mind.",
 	"keywords": ["wordpress"],
 	"type": "wordpress-plugin",
-	"homepage": "https://github.com/blazersix/flex-widget",
+	"homepage": "https://github.com/WebCakes/flex-widget",
 	"license": "GPL-2.0+",
 	"authors": [
 		{
 			"name": "Brady Vercher",
 			"email": "brady@blazersix.com",
 			"homepage": "http://www.blazersix.com/"
+		},
+		{
+			"name": "James Mann",
+			"email": "james@webcakes.ca",
+			"homepage": "http://www.webcakes.ca/"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/blazersix/flex-widget/issues",
-		"source": "https://github.com/blazersix/flex-widget"
+		"issues": "https://github.com/WebCakes/flex-widget/issues",
+		"source": "https://github.com/WebCakes/flex-widget"
 	},
 	"require": {
 		"composer/installers": "~1.0"

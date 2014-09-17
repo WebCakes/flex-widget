@@ -161,7 +161,7 @@ HTML;
 		ob_end_clean();
 
 		// May not work with cache enabled.
-		$this->assertEquals( 'simpleimage', $widget->id_base );
+		$this->assertEquals( 'flex', $widget->id_base );
 		$this->assertEquals( $id, $widget->test_instance['image_id'] );
 		$this->assertEquals( 'thumbnail', $widget->test_instance['image_size'] );
 		$this->assertEquals( 'Title', $widget->test_instance['title_raw'] );

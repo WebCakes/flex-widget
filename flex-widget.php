@@ -3,17 +3,17 @@
  * Flex Widget
  *
  * @package   FlexWidget
- * @author    Brady Vercher
- * @copyright Copyright (c) 2014, Blazer Six, Inc.
+ * @author    James Mann, Brady Vercher
+ * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
  *
  * @wordpress-plugin
  * Plugin Name: Flex Widget
- * Plugin URI: https://wordpress.org/extend/plugins/flex-widget/
- * Description: A flex widget utilizing the new WordPress media manager.
+ * Plugin URI: https://github.com/WebCakes/flex-widget
+ * Description: A Flexible WordPress widget with templating in mind.
  * Version: 4.1.1
- * Author: Blazer Six
- * Author URI: http://www.blazersix.com/
+ * Author: WebCakes
+ * Author URI: http://www.webcakes.ca/
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: flex-widget
