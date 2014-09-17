@@ -1,9 +1,9 @@
 {
-	"name": "blazersix/simple-image-widget",
+	"name": "blazersix/flex-widget",
 	"description": "A simple WordPress image widget.",
 	"keywords": ["wordpress"],
 	"type": "wordpress-plugin",
-	"homepage": "https://github.com/blazersix/simple-image-widget",
+	"homepage": "https://github.com/blazersix/flex-widget",
 	"license": "GPL-2.0+",
 	"authors": [
 		{
@@ -13,8 +13,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/blazersix/simple-image-widget/issues",
-		"source": "https://github.com/blazersix/simple-image-widget"
+		"issues": "https://github.com/blazersix/flex-widget/issues",
+		"source": "https://github.com/blazersix/flex-widget"
 	},
 	"require": {
 		"composer/installers": "~1.0"

@@ -2,7 +2,7 @@
 /**
  * Legacy support.
  *
- * @package   SimpleImageWidget
+ * @package   FlexWidget
  * @copyright Copyright (c) 2014, Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     4.0.0
@@ -11,20 +11,20 @@
 /**
  * Class to add support for features and data from previous versions.
  *
- * @package SimpleImageWidget
+ * @package FlexWidget
  * @since 4.0.0
  */
-class Simple_Image_Widget_Legacy {
+class Flex_Widget_Legacy {
 	/**
 	 * Load legacy support.
 	 *
 	 * @since 4.0.0
 	 */
 	public function load() {
-		add_filter( 'simple_image_widget_output', array( $this, 'output' ), 10, 4 );
-		add_filter( 'simple_image_widget_fields', array( $this, 'fields' ), 10, 2 );
-		add_action( 'simple_image_widget_field-legacy', array( $this, 'display_fields' ), 10, 2 );
-		add_filter( 'simple_image_widget_instance', array( $this, 'sanitize_data' ), 10, 4 );
+		add_filter( 'flex_widget_output', array( $this, 'output' ), 10, 4 );
+		add_filter( 'flex_widget_fields', array( $this, 'fields' ), 10, 2 );
+		add_action( 'flex_widget_field-legacy', array( $this, 'display_fields' ), 10, 2 );
+		add_filter( 'flex_widget_instance', array( $this, 'sanitize_data' ), 10, 4 );
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Simple_Image_Widget_Legacy {
 	 * @return array
 	 */
 	public function fields( $fields, $id_base ) {
-		if ( 'simpleimage' == $id_base && is_simple_image_widget_legacy() ) {
+		if ( 'simpleimage' == $id_base && is_flex_widget_legacy() ) {
 			$key = array_search( 'image_size', $fields );
 			if ( false !== $key ) {
 				unset( $fields[ $key ] );
@@ -100,24 +100,24 @@ class Simple_Image_Widget_Legacy {
 	 * @param WP_Widget $widget   Widget instance.
 	 */
 	public function display_fields( $instance, $widget ) {
-		if ( is_simple_image_widget_legacy() || ! empty( $instance['image'] ) ) :
+		if ( is_flex_widget_legacy() || ! empty( $instance['image'] ) ) :
 			?>
-			<div class="simple-image-widget-legacy-fields">
-				<?php if ( ! is_simple_image_widget_legacy() ) : ?>
+			<div class="flex-widget-legacy-fields">
+				<?php if ( ! is_flex_widget_legacy() ) : ?>
 					<p>
-						<em><?php _e( 'These fields are here to maintain your data from an earlier version.', 'simple-image-widget' ); ?></em>
+						<em><?php _e( 'These fields are here to maintain your data from an earlier version.', 'flex-widget' ); ?></em>
 					</p>
 					<p>
-						<em><?php _e( 'Select an image, then clear these values, and they will disappear when you save the widget.', 'simple-image-widget' ); ?></em>
+						<em><?php _e( 'Select an image, then clear these values, and they will disappear when you save the widget.', 'flex-widget' ); ?></em>
 					</p>
 				<?php endif; ?>
 
 				<p>
-					<label for="<?php echo esc_attr( $widget->get_field_id( 'image' ) ); ?>"><?php _e( 'Image URL:', 'simple-image-widget' ); ?></label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( 'image' ) ); ?>"><?php _e( 'Image URL:', 'flex-widget' ); ?></label>
 					<input type="text" name="<?php echo esc_attr( $widget->get_field_name( 'image' ) ); ?>" id="<?php echo esc_attr( $widget->get_field_id( 'image' ) ); ?>" value="<?php echo esc_url( $instance['image'] ); ?>" class="widefat">
 				</p>
 				<p>
-					<label for="<?php echo esc_attr( $widget->get_field_id( 'alt' ) ); ?>"><?php _e( 'Alternate Text:', 'simple-image-widget' ); ?></label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( 'alt' ) ); ?>"><?php _e( 'Alternate Text:', 'flex-widget' ); ?></label>
 					<input type="text" name="<?php echo esc_attr( $widget->get_field_name( 'alt' ) ); ?>" id="<?php echo esc_attr( $widget->get_field_id( 'alt' ) ); ?>" value="<?php echo esc_attr( $instance['alt'] ); ?>" class="widefat">
 				</p>
 			</div>
@@ -128,7 +128,7 @@ class Simple_Image_Widget_Legacy {
 	/**
 	 * Sanitize legacy field values.
 	 *
-	 * Called in Simple_Image_Widget::update().
+	 * Called in Flex_Widget::update().
 	 *
 	 * @since 4.0.0
 	 *

@@ -1,6 +1,6 @@
 <?php
 
-class Simple_Image_Widget_Test extends Simple_Image_Widget {
+class Flex_Widget_Test extends Flex_Widget {
 	public $test_args = array();
 	public $test_instance = array();
 

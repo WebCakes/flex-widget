@@ -1,8 +1,8 @@
 <?php
 /**
- * Simple Image Widget
+ * Flex Widget
  *
- * @package   SimpleImageWidget
+ * @package   FlexWidget
  * @copyright Copyright (c) 2014, Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     3.0.0
@@ -11,10 +11,10 @@
 /**
  * The main plugin class for loading the widget and attaching hooks.
  *
- * @package SimpleImageWidget
+ * @package FlexWidget
  * @since   3.0.0
  */
-class Simple_Image_Widget_Plugin {
+class Flex_Widget_Plugin {
 	/**
 	 * Set up the widget.
 	 *
@@ -24,17 +24,17 @@ class Simple_Image_Widget_Plugin {
 		self::load_textdomain();
 		add_action( 'widgets_init', array( $this, 'register_widget' ) );
 
-		$compat = new Simple_Image_Widget_Legacy();
+		$compat = new Flex_Widget_Legacy();
 		$compat->load();
 
-		if ( is_simple_image_widget_legacy() ) {
+		if ( is_flex_widget_legacy() ) {
 			return;
 		}
 
 		add_action( 'init', array( $this, 'register_assets' ) );
 		add_action( 'sidebar_admin_setup', array( $this, 'enqueue_admin_assets' ) );
 		add_filter( 'screen_settings', array( $this, 'widgets_screen_settings' ), 10, 2 );
-		add_action( 'wp_ajax_simple_image_widget_preferences', array( $this, 'ajax_save_user_preferences' ) );
+		add_action( 'wp_ajax_flex_widget_preferences', array( $this, 'ajax_save_user_preferences' ) );
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Simple_Image_Widget_Plugin {
 	 * @since 3.0.0
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'simple-image-widget', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
+		load_plugin_textdomain( 'flex-widget', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
 	}
 
 	/**
@@ -52,14 +52,14 @@ class Simple_Image_Widget_Plugin {
 	 * @since 3.0.0
 	 */
 	public function register_widget() {
-		register_widget( 'Simple_Image_Widget' );
+		register_widget( 'Flex_Widget' );
 	}
 
 	/**
 	 * Register and localize generic scripts and styles.
 	 *
 	 * A preliminary attempt has been made to abstract the
-	 * 'simple-image-widget-control' script a bit in order to allow it to be
+	 * 'flex-widget-control' script a bit in order to allow it to be
 	 * re-used anywhere a similiar media selection feature is needed.
 	 *
 	 * Custom image size labels need to be added using the
@@ -69,24 +69,24 @@ class Simple_Image_Widget_Plugin {
 	 */
 	public function register_assets() {
 		wp_register_style(
-			'simple-image-widget-admin',
-			dirname( plugin_dir_url( __FILE__ ) ) . '/assets/css/simple-image-widget.css'
+			'flex-widget-admin',
+			dirname( plugin_dir_url( __FILE__ ) ) . '/assets/css/flex-widget.css'
 		);
 
 		wp_register_script(
-			'simple-image-widget-admin',
-			dirname( plugin_dir_url( __FILE__ ) ) . '/assets/js/simple-image-widget.js',
+			'flex-widget-admin',
+			dirname( plugin_dir_url( __FILE__ ) ) . '/assets/js/flex-widget.js',
 			array( 'media-upload', 'media-views' )
 		);
 
 		wp_localize_script(
-			'simple-image-widget-admin',
-			'SimpleImageWidget',
+			'flex-widget-admin',
+			'FlexWidget',
 			array(
 				'l10n' => array(
-					'frameTitle'      => __( 'Choose an Attachment', 'simple-image-widget' ),
-					'frameUpdateText' => __( 'Update Attachment', 'simple-image-widget' ),
-					'fullSizeLabel'   => __( 'Full Size', 'simple-image-widget' ),
+					'frameTitle'      => __( 'Choose an Attachment', 'flex-widget' ),
+					'frameUpdateText' => __( 'Update Attachment', 'flex-widget' ),
+					'fullSizeLabel'   => __( 'Full Size', 'flex-widget' ),
 					'imageSizeNames'  => self::get_image_size_names(),
 				),
 				'screenOptionsNonce' => wp_create_nonce( 'save-siw-preferences' ),
@@ -109,15 +109,15 @@ class Simple_Image_Widget_Plugin {
 			return $settings;
 		}
 
-		$settings .= sprintf( '<h5>%s</h5>', __( 'Simple Image Widget', 'simple-image-widget' ) );
+		$settings .= sprintf( '<h5>%s</h5>', __( 'Flex Widget', 'flex-widget' ) );
 
 		$fields = array(
-			'image_size'   => __( 'Image Size', 'simple-image-widget' ),
-			'link'         => __( 'Link', 'simple-image-widget' ),
-			'link_classes' => __( 'Link Classes', 'simple-image-widget' ),
-			'link_text'    => __( 'Link Text', 'simple-image-widget' ),
-			'new_window'   => __( 'New Window', 'simple-image-widget' ),
-			'text'         => __( 'Text', 'simple-image-widget' ),
+			'image_size'   => __( 'Image Size', 'flex-widget' ),
+			'link'         => __( 'Link', 'flex-widget' ),
+			'link_classes' => __( 'Link Classes', 'flex-widget' ),
+			'link_text'    => __( 'Link Text', 'flex-widget' ),
+			'new_window'   => __( 'New Window', 'flex-widget' ),
+			'text'         => __( 'Text', 'flex-widget' ),
 		);
 
 		/**
@@ -127,12 +127,12 @@ class Simple_Image_Widget_Plugin {
 		 *
 		 * @param array $fields List of fields with ids as keys and labels as values.
 		 */
-		$fields = apply_filters( 'simple_image_widget_hideable_fields', $fields );
+		$fields = apply_filters( 'flex_widget_hideable_fields', $fields );
 		$hidden_fields = $this->get_hidden_fields();
 
 		foreach ( $fields as $id => $label ) {
 			$settings .= sprintf(
-				'<label><input type="checkbox" value="%1$s"%2$s class="simple-image-widget-field-toggle"> %3$s</label>',
+				'<label><input type="checkbox" value="%1$s"%2$s class="flex-widget-field-toggle"> %3$s</label>',
 				esc_attr( $id ),
 				checked( in_array( $id, $hidden_fields ), false, false ),
 				esc_html( $label )
@@ -151,8 +151,8 @@ class Simple_Image_Widget_Plugin {
 	 */
 	public function enqueue_admin_assets() {
 		wp_enqueue_media();
-		wp_enqueue_script( 'simple-image-widget-admin' );
-		wp_enqueue_style( 'simple-image-widget-admin' );
+		wp_enqueue_script( 'flex-widget-admin' );
+		wp_enqueue_style( 'flex-widget-admin' );
 	}
 
 	/**
@@ -173,10 +173,10 @@ class Simple_Image_Widget_Plugin {
 		return apply_filters(
 			'image_size_names_choose',
 			array(
-				'thumbnail' => __( 'Thumbnail', 'simple-image-widget' ),
-				'medium'    => __( 'Medium', 'simple-image-widget' ),
-				'large'     => __( 'Large', 'simple-image-widget' ),
-				'full'      => __( 'Full Size', 'simple-image-widget' ),
+				'thumbnail' => __( 'Thumbnail', 'flex-widget' ),
+				'medium'    => __( 'Medium', 'flex-widget' ),
+				'large'     => __( 'Large', 'flex-widget' ),
+				'full'      => __( 'Full Size', 'flex-widget' ),
 			)
 		);
 	}
@@ -203,7 +203,7 @@ class Simple_Image_Widget_Plugin {
 		 *
 		 * @param array $hidden_fields List of hidden field ids.
 		 */
-		return (array) apply_filters( 'simple_image_widget_hidden_fields', $hidden_fields );
+		return (array) apply_filters( 'flex_widget_hidden_fields', $hidden_fields );
 	}
 
 	/**

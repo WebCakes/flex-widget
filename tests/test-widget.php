@@ -3,7 +3,7 @@
 /**
  *
  */
-class Test_Simple_Image_Widget extends WP_UnitTestCase {
+class Test_Flex_Widget extends WP_UnitTestCase {
 
 	/**
 	 * List of media thumbnail ids
@@ -15,13 +15,13 @@ class Test_Simple_Image_Widget extends WP_UnitTestCase {
 	 *
 	 */
 	public function setUp() {
-		global $simple_image_widget;
+		global $flex_widget;
 
 		parent::setUp();
-		$simple_image_widget->register_widget();
+		$flex_widget->register_widget();
 
-		require_once( SIW_DIR_TESTDATA . '/../includes/class-simple-image-widget-test.php' );
-		register_widget( 'Simple_Image_Widget_Test' );
+		require_once( FW_DIR_TESTDATA . '/../includes/class-flex-widget-test.php' );
+		register_widget( 'Flex_Widget_Test' );
 	}
 
 	/**
@@ -45,14 +45,14 @@ class Test_Simple_Image_Widget extends WP_UnitTestCase {
 	 */
 	public function test_widget_registered() {
 		global $wp_widget_factory;
-		$this->assertTrue( isset( $wp_widget_factory->widgets['Simple_Image_Widget'] ) );
+		$this->assertTrue( isset( $wp_widget_factory->widgets['Flex_Widget'] ) );
 	}
 
 	/**
 	 *
 	 */
 	public function test_widget_output() {
-		$filename = SIW_DIR_TESTDATA . '/images/blazer-six.png';
+		$filename = FW_DIR_TESTDATA . '/images/blazer-six.png';
 		$contents = file_get_contents( $filename );
 		$upload = wp_upload_bits( basename( $filename ), null, $contents );
 		$id = $this->make_attachment( $upload );
@@ -60,7 +60,7 @@ class Test_Simple_Image_Widget extends WP_UnitTestCase {
 		$expected = <<<HTML
 <aside id="%1\$s" class="widget %2\$s">
 
-	<p class="simple-image">
+	<p class="flex">
 		{{image}}	</p>
 
 
@@ -87,7 +87,7 @@ HTML;
 		);
 
 		ob_start();
-		the_widget( 'Simple_Image_Widget', $instance, $args );
+		the_widget( 'Flex_Widget', $instance, $args );
 		$content = ob_get_clean();
 
 		$this->assertEquals( $expected, $content );
@@ -120,7 +120,7 @@ HTML;
 		);
 
 		ob_start();
-		the_widget( 'Simple_Image_Widget', $instance, $args );
+		the_widget( 'Flex_Widget', $instance, $args );
 		$content = ob_get_clean();
 
 		$this->assertEquals( $expected, $content );
@@ -132,7 +132,7 @@ HTML;
 	public function test_widget_args_and_instance() {
 		global $wp_widget_factory;
 
-		$filename = SIW_DIR_TESTDATA . '/images/blazer-six.png';
+		$filename = FW_DIR_TESTDATA . '/images/blazer-six.png';
 		$contents = file_get_contents( $filename );
 		$upload = wp_upload_bits( basename( $filename ), null, $contents );
 		$id = $this->make_attachment( $upload );
@@ -155,7 +155,7 @@ HTML;
 		);
 
 		ob_start();
-		$widget = $wp_widget_factory->widgets['Simple_Image_Widget_Test'];
+		$widget = $wp_widget_factory->widgets['Flex_Widget_Test'];
 		$widget->_set( -1 );
 		$widget->widget( $args, $instance );
 		ob_end_clean();
@@ -185,7 +185,7 @@ HTML;
 			'text'       => '',
 		);
 
-		$widget = $wp_widget_factory->widgets['Simple_Image_Widget_Test'];
+		$widget = $wp_widget_factory->widgets['Flex_Widget_Test'];
 
 		$new_instance = $widget->update( $instance, array() );
 		$this->assertEquals( 'Title', $new_instance['title'] );
@@ -217,7 +217,7 @@ HTML;
 		);
 
 		ob_start();
-		$widget = $wp_widget_factory->widgets['Simple_Image_Widget_Test'];
+		$widget = $wp_widget_factory->widgets['Flex_Widget_Test'];
 		$widget->_set( -1 );
 		$widget->widget( $args, $instance );
 		ob_end_clean();
@@ -240,12 +240,12 @@ HTML;
 	public function test_wiget_image_size_values() {
 		global $wp_widget_factory;
 
-		$filename = SIW_DIR_TESTDATA . '/images/blazer-six.png';
+		$filename = FW_DIR_TESTDATA . '/images/blazer-six.png';
 		$contents = file_get_contents( $filename );
 		$upload = wp_upload_bits( basename( $filename ), null, $contents );
 		$id = $this->make_attachment( $upload );
 
-		$widget = $wp_widget_factory->widgets['Simple_Image_Widget_Test'];
+		$widget = $wp_widget_factory->widgets['Flex_Widget_Test'];
 		$sizes = $widget->get_image_sizes( $id );
 
 		$this->assertEquals( 'Full Size (800&times;193)', $sizes['full'] );

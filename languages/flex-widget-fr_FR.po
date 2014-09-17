@@ -1,9 +1,9 @@
-# Copyright (C) 2014 Simple Image Widget
-# This file is distributed under the same license as the Simple Image Widget package.
+# Copyright (C) 2014 Flex Widget
+# This file is distributed under the same license as the Flex Widget package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Simple Image Widget 3.0.4\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/simple-image-"
+"Project-Id-Version: Flex Widget 3.0.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/flex-"
 "widget\n"
 "POT-Creation-Date: 2014-06-13 21:26:00+00:00\n"
 "PO-Revision-Date: 2014-06-17 14:14+0100\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Generator: Poedit 1.6.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: includes/class-simple-image-widget-legacy.php:108
+#: includes/class-flex-widget-legacy.php:108
 msgid "These fields are here to maintain your data from an earlier version."
 msgstr ""
 "Ces champs sont là pour maintenir vos données à partir d'une version "
 "antérieure."
 
-#: includes/class-simple-image-widget-legacy.php:111
+#: includes/class-flex-widget-legacy.php:111
 msgid ""
 "Select an image, then clear these values, and they will disappear when you "
 "save the widget."
@@ -30,91 +30,91 @@ msgstr ""
 "Sélectionner une image, puis effacer ces valeurs, et elles disparaîtront "
 "lorsque vous enregistrerez le widget."
 
-#: includes/class-simple-image-widget-legacy.php:116
+#: includes/class-flex-widget-legacy.php:116
 msgid "Image URL:"
 msgstr "URL de l'image:"
 
-#: includes/class-simple-image-widget-legacy.php:120
+#: includes/class-flex-widget-legacy.php:120
 msgid "Alternate Text:"
 msgstr "Texte alternative:"
 
-#: includes/class-simple-image-widget-plugin.php:85
+#: includes/class-flex-widget-plugin.php:85
 msgid "Choose an Attachment"
 msgstr "Choisir un fichier"
 
-#: includes/class-simple-image-widget-plugin.php:86
+#: includes/class-flex-widget-plugin.php:86
 msgid "Update Attachment"
 msgstr "Mettre à jour le fichier"
 
-#: includes/class-simple-image-widget-plugin.php:87
-#: includes/class-simple-image-widget-plugin.php:128
-#: includes/class-simple-image-widget.php:412
+#: includes/class-flex-widget-plugin.php:87
+#: includes/class-flex-widget-plugin.php:128
+#: includes/class-flex-widget.php:412
 msgid "Full Size"
 msgstr "Taille entière"
 
-#: includes/class-simple-image-widget-plugin.php:125
+#: includes/class-flex-widget-plugin.php:125
 msgid "Thumbnail"
 msgstr "Miniature"
 
-#: includes/class-simple-image-widget-plugin.php:126
+#: includes/class-flex-widget-plugin.php:126
 msgid "Medium"
 msgstr "Moyenne"
 
-#: includes/class-simple-image-widget-plugin.php:127
+#: includes/class-flex-widget-plugin.php:127
 msgid "Large"
 msgstr "Grande taille"
 
-#: includes/class-simple-image-widget.php:43
+#: includes/class-flex-widget.php:43
 msgid "Image"
 msgstr "Image"
 
-#: includes/class-simple-image-widget.php:49
+#: includes/class-flex-widget.php:49
 msgid "An image from your Media Library."
 msgstr "Une image de votre bibliothère de médias."
 
-#: includes/class-simple-image-widget.php:235
+#: includes/class-flex-widget.php:235
 msgid "Title:"
 msgstr "Titre:"
 
-#: includes/class-simple-image-widget.php:241
-#: includes/class-simple-image-widget.php:251
+#: includes/class-flex-widget.php:241
+#: includes/class-flex-widget.php:251
 msgid "Choose an Image"
 msgstr "Sélectionner une image"
 
-#: includes/class-simple-image-widget.php:242
+#: includes/class-flex-widget.php:242
 msgid "Update Image"
 msgstr "Mettre à jour l'image"
 
-#: includes/class-simple-image-widget.php:263
+#: includes/class-flex-widget.php:263
 msgid "Size:"
 msgstr "Taille:"
 
-#: includes/class-simple-image-widget.php:283
+#: includes/class-flex-widget.php:283
 msgid "Link:"
 msgstr "Lien:"
 
-#: includes/class-simple-image-widget.php:289
+#: includes/class-flex-widget.php:289
 msgid "Open in new window?"
 msgstr "Ouvrir dans une nouvelle fenêtre?"
 
-#: includes/class-simple-image-widget.php:298
+#: includes/class-flex-widget.php:298
 msgid "Link Text:"
 msgstr "Label du lien:"
 
-#: includes/class-simple-image-widget.php:307
+#: includes/class-flex-widget.php:307
 msgid "Text:"
 msgstr "Texte:"
 
 #. Plugin Name of the plugin/theme
-msgid "Simple Image Widget"
-msgstr "Simple Image Widget"
+msgid "Flex Widget"
+msgstr "Flex Widget"
 
 #. Plugin URI of the plugin/theme
-msgid "https://wordpress.org/extend/plugins/simple-image-widget/"
-msgstr "https://wordpress.org/extend/plugins/simple-image-widget/"
+msgid "https://wordpress.org/extend/plugins/flex-widget/"
+msgstr "https://wordpress.org/extend/plugins/flex-widget/"
 
 #. Description of the plugin/theme
-msgid "A simple image widget utilizing the new WordPress media manager."
+msgid "A flex widget utilizing the new WordPress media manager."
 msgstr ""
 "Un simple widget image utilisant le nouveau gestionnaire de médias de "
 "WordPress."

@@ -7,7 +7,7 @@
  * load_template() method that accepts arbitrary data to extra into the local
  * template scope.
  *
- * @package   SimpleImageWidget
+ * @package   FlexWidget
  * @since     4.0.0
  * @author    Gary Jones
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
@@ -18,11 +18,11 @@
 /**
  * Template loader.
  *
- * @package SimpleImageWidget
+ * @package FlexWidget
  * @since   4.0.0
  * @author  Gary Jones
  */
-class Simple_Image_Widget_Template_Loader {
+class Flex_Widget_Template_Loader {
 	/**
 	 * Prefix for filter names.
 	 *
@@ -30,7 +30,7 @@ class Simple_Image_Widget_Template_Loader {
 	 *
 	 * @type string
 	 */
-	protected $filter_prefix = 'simple_image_widget';
+	protected $filter_prefix = 'flex_widget';
 
 	/**
 	 * Directory name where custom templates for this plugin should be found in
@@ -40,7 +40,7 @@ class Simple_Image_Widget_Template_Loader {
 	 *
 	 * @type string
 	 */
-	protected $theme_template_directory = 'simple-image-widget';
+	protected $theme_template_directory = 'flex-widget';
 
 	/**
 	 * Reference to the root directory path of this plugin.
@@ -49,7 +49,7 @@ class Simple_Image_Widget_Template_Loader {
 	 *
 	 * @type string
 	 */
-	protected $plugin_directory = SIW_DIR;
+	protected $plugin_directory = FW_DIR;
 
 	/**
 	 * Directory name where templates are found in this plugin.
@@ -84,9 +84,9 @@ class Simple_Image_Widget_Template_Loader {
 	 *
 	 * @since 4.0.0
 	 *
-	 * @uses Simple_Image_Widget_Template_Loader::get_template_possble_parts()
+	 * @uses Flex_Widget_Template_Loader::get_template_possble_parts()
 	 *     Create file names of templates.
-	 * @uses Simple_Image_Widget_Template_Loader::locate_template() Retrieve the
+	 * @uses Flex_Widget_Template_Loader::locate_template() Retrieve the
 	 *     name of the highest priority template file that exists.
 	 *
 	 * @param string  $slug
@@ -153,7 +153,7 @@ class Simple_Image_Widget_Template_Loader {
 	 *
 	 * @since 4.0.0
 	 *
-	 * @uses Simple_Image_Widget_Template_Loader::get_template_paths() Return a
+	 * @uses Flex_Widget_Template_Loader::get_template_paths() Return a
 	 *     list of paths to check for template locations.
 	 *
 	 * @param string|array $template_names Template file(s) to search for, in order.

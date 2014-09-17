@@ -3,7 +3,7 @@
 /**
  *
  */
-class Test_Simple_Image_Widget_Legacy extends WP_UnitTestCase {
+class Test_Flex_Widget_Legacy extends WP_UnitTestCase {
 
 	/**
 	 * List of media thumbnail ids
@@ -15,17 +15,17 @@ class Test_Simple_Image_Widget_Legacy extends WP_UnitTestCase {
 	 *
 	 */
 	public function setUp() {
-		global $simple_image_widget;
+		global $flex_widget;
 		
-		add_filter( 'is_simple_image_widget_legacy', '__return_true' );
+		add_filter( 'is_flex_widget_legacy', '__return_true' );
 
 		parent::setUp();
-		$simple_image_widget->register_widget();
+		$flex_widget->register_widget();
 
-		require_once( SIW_DIR_TESTDATA . '/../includes/class-simple-image-widget-test.php' );
-		register_widget( 'Simple_Image_Widget_Test' );
+		require_once( FW_DIR_TESTDATA . '/../includes/class-flex-widget-test.php' );
+		register_widget( 'Flex_Widget_Test' );
 
-		$compat = new Simple_Image_Widget_Legacy();
+		$compat = new Flex_Widget_Legacy();
 		$compat->load();
 	}
 
@@ -49,7 +49,7 @@ class Test_Simple_Image_Widget_Legacy extends WP_UnitTestCase {
 	 *
 	 */
 	public function test_widget_output() {
-		$filename = SIW_DIR_TESTDATA . '/images/blazer-six.png';
+		$filename = FW_DIR_TESTDATA . '/images/blazer-six.png';
 		$contents = file_get_contents( $filename );
 		$upload = wp_upload_bits( basename( $filename ), null, $contents );
 		$id = $this->make_attachment( $upload );
@@ -75,7 +75,7 @@ HTML;
 		);
 
 		ob_start();
-		the_widget( 'Simple_Image_Widget', $instance, $args );
+		the_widget( 'Flex_Widget', $instance, $args );
 		$content = ob_get_clean();
 
 		$this->assertEquals( $expected, $content );
@@ -87,7 +87,7 @@ HTML;
 	public function test_widget_args_and_instance() {
 		global $wp_widget_factory;
 
-		$filename = SIW_DIR_TESTDATA . '/images/blazer-six.png';
+		$filename = FW_DIR_TESTDATA . '/images/blazer-six.png';
 		$contents = file_get_contents( $filename );
 		$bits = wp_upload_bits( basename( $filename ), null, $contents );
 		$id = $this->make_attachment( $bits );
@@ -111,7 +111,7 @@ HTML;
 		);
 
 		ob_start();
-		$widget = $wp_widget_factory->widgets['Simple_Image_Widget_Test'];
+		$widget = $wp_widget_factory->widgets['Flex_Widget_Test'];
 		$widget->_set( -1 );
 		$widget->widget( $args, $instance );
 		ob_end_clean();
@@ -127,9 +127,9 @@ HTML;
 	public function test_legacy_fields() {
 		global $wp_widget_factory;
 
-		$widget = $wp_widget_factory->widgets['Simple_Image_Widget'];
+		$widget = $wp_widget_factory->widgets['Flex_Widget'];
 		
-		$fields = (array) apply_filters( 'simple_image_widget_fields', $widget->form_fields(), $widget->id_base );
+		$fields = (array) apply_filters( 'flex_widget_fields', $widget->form_fields(), $widget->id_base );
 		$this->assertEquals( 'legacy', $fields[0] );
 		$this->assertFalse( array_search( 'image_size', $fields ) );
 	}

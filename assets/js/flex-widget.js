@@ -1,17 +1,17 @@
 /*global _:false, ajaxurl:false, wp:false */
 
-window.SimpleImageWidget = window.SimpleImageWidget || {};
+window.FlexWidget = window.FlexWidget || {};
 
 (function( window, $, _, wp, undefined ) {
 	'use strict';
 
-	var SimpleImageWidget = window.SimpleImageWidget,
+	var FlexWidget = window.FlexWidget,
 		Attachment = wp.media.model.Attachment,
 		frames = [],
 		Control, l10n;
 
 	// Link any localized strings.
-	l10n = SimpleImageWidget.l10n = SimpleImageWidget.l10n || {};
+	l10n = FlexWidget.l10n = FlexWidget.l10n || {};
 
 	/**
 	 * Control module object.
@@ -21,7 +21,7 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 
 		this.$el = $( el );
 
-		selector = this.$el.data( 'target' ) || '.simple-image-widget-control-target';
+		selector = this.$el.data( 'target' ) || '.flex-widget-control-target';
 		if ( 0 === selector.indexOf( '#' ) ) {
 			this.$target = $( selector );
 		} else {
@@ -31,7 +31,7 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 
 		defaults = {
 			frame: {
-				id: 'simple-image-widget',
+				id: 'flex-widget',
 				title: this.$el.data( 'title' ) || l10n.frameTitle,
 				updateText: this.$el.data( 'update-text' ) || l10n.frameUpdateText,
 				multiple: this.$el.data( 'select-multiple' ) || false
@@ -114,7 +114,7 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 		};
 	};
 
-	_.extend( SimpleImageWidget, {
+	_.extend( FlexWidget, {
 		/**
 		 * Retrieve a media selection control object.
 		 *
@@ -125,7 +125,7 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 		getControl: function( el ) {
 			var control, $control;
 
-			$control = $( el ).closest( '.simple-image-widget-control' );
+			$control = $( el ).closest( '.flex-widget-control' );
 			control = $control.data( 'media-control' );
 
 			if ( ! control ) {
@@ -173,15 +173,15 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 		var $body = $( 'body' );
 		
 		// Open the media frame when the choose button or image are clicked.
-		$body.on( 'click', '.simple-image-widget-control-choose, .simple-image-widget-form img', function( e ) {
+		$body.on( 'click', '.flex-widget-control-choose, .flex-widget-form img', function( e ) {
 			e.preventDefault();
-			SimpleImageWidget.getControl( this ).frame().open();
+			FlexWidget.getControl( this ).frame().open();
 		});
 
 		// Update the image preview and size dropdown in a widget when an image is selected.
-		$body.on( 'selectionChange.simpleimagewidget', '.simple-image-widget-control', function( e, selection ) {
+		$body.on( 'selectionChange.simpleimagewidget', '.flex-widget-control', function( e, selection ) {
 			var $control = $( e.target ),
-				$sizeField = $control.closest( '.simple-image-widget-form' ).find( 'select.image-size' ),
+				$sizeField = $control.closest( '.flex-widget-form' ).find( 'select.image-size' ),
 				model = selection.first(),
 				sizes = model.get( 'sizes' ),
 				size, image;
@@ -191,7 +191,7 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 			}
 
 			if ( $sizeField.length ) {
-				SimpleImageWidget.updateSizeDropdownOptions( $sizeField, sizes );
+				FlexWidget.updateSizeDropdownOptions( $sizeField, sizes );
 			}
 
 			size = size || model.toJSON();
@@ -200,28 +200,28 @@ window.SimpleImageWidget = window.SimpleImageWidget || {};
 			$control.find( 'img' ).remove().end()
 				.prepend( image )
 				.addClass( 'has-image' )
-				.find( 'a.simple-image-widget-control-choose' ).removeClass( 'button-hero' );
+				.find( 'a.flex-widget-control-choose' ).removeClass( 'button-hero' );
 		});
 
 		// Wire up the toggle checkboxes in the screen options tab.
-		$( '.simple-image-widget-field-toggle' ).on( 'click', function() {
+		$( '.flex-widget-field-toggle' ).on( 'click', function() {
 			var $this = $( this ),
 				field = $this.val(),
-				$hiddenFields = $( '.simple-image-widget-field-toggle:not(:checked)' );
+				$hiddenFields = $( '.flex-widget-field-toggle:not(:checked)' );
 
-			$( '.simple-image-widget-field-' + field ).toggleClass( 'is-hidden', ! $this.prop( 'checked' ) );
+			$( '.flex-widget-field-' + field ).toggleClass( 'is-hidden', ! $this.prop( 'checked' ) );
 
 			$.ajax({
 				url: ajaxurl,
 				type: 'POST',
 				data: {
-					action: 'simple_image_widget_preferences',
+					action: 'flex_widget_preferences',
 					hidden: $hiddenFields.map(function() { return this.value; }).get().join( ',' ),
-					nonce: SimpleImageWidget.screenOptionsNonce
+					nonce: FlexWidget.screenOptionsNonce
 				},
 				success: function( data ) {
 					if ( 'nonce' in data ) {
-						SimpleImageWidget.screenOptionsNonce = data.nonce;
+						FlexWidget.screenOptionsNonce = data.nonce;
 					}
 				}
 			});

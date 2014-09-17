@@ -1,4 +1,4 @@
-=== Simple Image Widget ===
+=== Flex Widget ===
 Contributors: blazersix, bradyvercher
 Tags: image widget, widget, media, media manager, sidebar, image, photo, picture
 Requires at least: 3.5
@@ -11,17 +11,17 @@ A simple widget that makes it a breeze to add images to your sidebars.
 
 == Description ==
 
-Simple Image Widget is what the name implies -- the easiest way to add images to your sidebars. Display advertisements, calls-to-action, or even build a slider based on image widgets.
+Flex Widget is what the name implies -- the easiest way to add images to your sidebars. Display advertisements, calls-to-action, or even build a slider based on image widgets.
 
-Despite its simplicity, Simple Image Widget is built with extensibility in mind, making it super easy to spin off new image-based widgets, or customize the widget ouput using the available template hierarchy.
+Despite its simplicity, Flex Widget is built with extensibility in mind, making it super easy to spin off new image-based widgets, or customize the widget ouput using the available template hierarchy.
 
-Blazer Six took over development and maintenance of Simple Image Widget with version 3.0, rewriting it from the ground up to take advantage of the media improvements in WordPress 3.5. Read about the original thought behind creating the plugin and ways it can be extended in [Building a Better Image Widget with the New WordPress Media Manager](http://www.blazersix.com/blog/wordpress-image-widget/).
+Blazer Six took over development and maintenance of Flex Widget with version 3.0, rewriting it from the ground up to take advantage of the media improvements in WordPress 3.5. Read about the original thought behind creating the plugin and ways it can be extended in [Building a Better Image Widget with the New WordPress Media Manager](http://www.blazersix.com/blog/wordpress-image-widget/).
 
 = Additional Resources =
 
-* [Write a review](http://wordpress.org/support/view/plugin-reviews/simple-image-widget#postform)
-* [Have a question?](http://wordpress.org/support/plugin/simple-image-widget)
-* [Contribute on GitHub](https://github.com/blazersix/simple-image-widget)
+* [Write a review](http://wordpress.org/support/view/plugin-reviews/flex-widget#postform)
+* [Have a question?](http://wordpress.org/support/plugin/flex-widget)
+* [Contribute on GitHub](https://github.com/blazersix/flex-widget)
 * [Follow @bradyvercher](https://twitter.com/bradyvercher)
 * [Hire Blazer Six](http://www.blazersix.com/)
 
@@ -38,12 +38,12 @@ Install just like most other plugins. [Check out the codex](http://codex.wordpre
 
 = Is there a way to filter the widget output? =
 
-Absolutely. Changing the output can be done a few different ways, but the most common alternatives involve using the "`simple_image_widget_output`" filter or overriding the template in your theme.
+Absolutely. Changing the output can be done a few different ways, but the most common alternatives involve using the "`flex_widget_output`" filter or overriding the template in your theme.
 
-To use the template method, copy "`widget.php`" from the "`/templates`" directory in the plugin to a "`/simple-image-widget`" directory in your theme. Then update as you wish. It's also possible to create a custom template specific to each sidebar in your theme using the following default template hierarchy:
+To use the template method, copy "`widget.php`" from the "`/templates`" directory in the plugin to a "`/flex-widget`" directory in your theme. Then update as you wish. It's also possible to create a custom template specific to each sidebar in your theme using the following default template hierarchy:
 
-* `{theme}/simple-image-widget/{sidebar_id}_widget.php`
-* `{theme}/simple-image-widget/widget.php`
+* `{theme}/flex-widget/{sidebar_id}_widget.php`
+* `{theme}/flex-widget/widget.php`
 * `{plugin}/templates/widget.php`
 
 _Always use a [child theme](https://codex.wordpress.org/Child_Themes) to make changes if you acquired your theme from a third-party and you expect it to be updated. Otherwise, you run the risk of losing your customizations._
@@ -111,7 +111,7 @@ The widget uses the core function `wp_get_attachment_image()` to display the ima
 = 3.0.3 =
 * Fixed PHP class name formatting.
 * Added 'link_open' and 'link_close' args to the $instance when rendering the widget display.
-* Added a 'simple-image' CSS class to the image wrapper.
+* Added a 'flex' CSS class to the image wrapper.
 
 = 3.0.2 =
 * Implemented feature for opening links in a new tab/window.

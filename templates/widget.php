@@ -2,10 +2,10 @@
 /**
  * Default widget template.
  *
- * Copy this template to /simple-image-widget/widget.php in your theme or
+ * Copy this template to /flex-widget/widget.php in your theme or
  * child theme to make edits.
  *
- * @package   SimpleImageWidget
+ * @package   FlexWidget
  * @copyright Copyright (c) 2014, Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     4.0.0
@@ -19,7 +19,7 @@ endif;
 ?>
 
 <?php if ( ! empty( $image_id ) ) : ?>
-	<p class="simple-image">
+	<p class="flex">
 		<?php
 		echo $link_open;
 		echo wp_get_attachment_image( $image_id, $image_size );

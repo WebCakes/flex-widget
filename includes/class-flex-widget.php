@@ -2,7 +2,7 @@
 /**
  * The image widget.
  *
- * @package   SimpleImageWidget
+ * @package   FlexWidget
  * @copyright Copyright (c) 2014, Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     3.0.0
@@ -11,10 +11,10 @@
 /**
  * Image widget class.
  *
- * @package SimpleImageWidget
+ * @package FlexWidget
  * @since   3.0.0
  */
-class Simple_Image_Widget extends WP_Widget {
+class Flex_Widget extends WP_Widget {
 	/**
 	 * Setup widget options.
 	 *
@@ -40,13 +40,13 @@ class Simple_Image_Widget extends WP_Widget {
 	 */
 	public function __construct( $id_base = false, $name = false, $widget_options = array(), $control_options = array() ) {
 		$id_base = ( $id_base ) ? $id_base : 'simpleimage'; // Legacy ID.
-		$name    = ( $name ) ? $name : __( 'Image', 'simple-image-widget' );
+		$name    = ( $name ) ? $name : __( 'Image', 'flex-widget' );
 
 		$widget_options = wp_parse_args(
 			$widget_options,
 			array(
 				'classname'   => 'widget_simpleimage', // Legacy class name.
-				'description' => __( 'An image from your Media Library.', 'simple-image-widget' ),
+				'description' => __( 'An image from your Media Library.', 'flex-widget' ),
 			)
 		);
 
@@ -72,7 +72,7 @@ class Simple_Image_Widget extends WP_Widget {
 	 * @param array $instance The widget instance settings.
 	 */
 	public function widget( $args, $instance ) {
-		$cache = (array) wp_cache_get( 'simple_image_widget', 'widget' );
+		$cache = (array) wp_cache_get( 'flex_widget', 'widget' );
 		if ( ! $this->is_preview() && isset( $cache[ $this->id ] ) ) {
 			echo $cache[ $this->id ];
 			return;
@@ -129,7 +129,7 @@ class Simple_Image_Widget extends WP_Widget {
 
 		if ( ! $this->is_preview() ) {
 			$cache[ $this->id ] = $output;
-			wp_cache_set( 'simple_image_widget', array_filter( $cache ), 'widget' );
+			wp_cache_set( 'flex_widget', array_filter( $cache ), 'widget' );
 		}
 	}
 
@@ -161,7 +161,7 @@ class Simple_Image_Widget extends WP_Widget {
 		 * @param array  $instance The widget instance settings.
 		 * @param string $id_base  Widget type id.
 		 */
-		$inside = apply_filters( 'simple_image_widget_output', '', $args, $instance, $this->id_base );
+		$inside = apply_filters( 'flex_widget_output', '', $args, $instance, $this->id_base );
 
 		if ( $inside ) {
 			$output .= $inside;
@@ -170,15 +170,15 @@ class Simple_Image_Widget extends WP_Widget {
 			$data['args'] = $args;
 			$data['after_title'] = $args['after_title'];
 			$data['before_title'] = $args['before_title'];
-			$data['image_size'] = $image_size = ( ! empty( $instance['image_size'] ) ) ? $instance['image_size'] : apply_filters( 'simple_image_widget_output_default_size', 'medium', $this->id_base );
+			$data['image_size'] = $image_size = ( ! empty( $instance['image_size'] ) ) ? $instance['image_size'] : apply_filters( 'flex_widget_output_default_size', 'medium', $this->id_base );
 			$data['title'] = ( empty( $instance['title'] ) ) ? '' : $instance['title'];
 			$data = array_merge( $instance, $data );
-			$data = apply_filters( 'simple_image_widget_template_data', $data );
+			$data = apply_filters( 'flex_widget_template_data', $data );
 
 			ob_start();
 			$templates = $this->get_template_names( $args, $instance );
 
-			$template_loader = new Simple_Image_Widget_Template_Loader();
+			$template_loader = new Flex_Widget_Template_Loader();
 			$template = $template_loader->locate_template( $templates );
 			$template_loader->load_template( $template, $data );
 			$output .= ob_get_clean();
@@ -216,7 +216,7 @@ class Simple_Image_Widget extends WP_Widget {
 		$instance['image_id'] = absint( $instance['image_id'] );
 		$instance['title']    = wp_strip_all_tags( $instance['title'] );
 
-		$button_class = array( 'button', 'button-hero', 'simple-image-widget-control-choose' );
+		$button_class = array( 'button', 'button-hero', 'flex-widget-control-choose' );
 		$image_id     = $instance['image_id'];
 
 		/**
@@ -231,10 +231,10 @@ class Simple_Image_Widget extends WP_Widget {
 		 * @param array  $fields  List of field ids.
 		 * @param string $id_base Widget type id.
 		 */
-		$fields = (array) apply_filters( 'simple_image_widget_fields', $this->form_fields(), $this->id_base );
+		$fields = (array) apply_filters( 'flex_widget_fields', $this->form_fields(), $this->id_base );
 		?>
 
-		<div class="simple-image-widget-form">
+		<div class="flex-widget-form">
 
 			<?php
 			/**
@@ -245,18 +245,18 @@ class Simple_Image_Widget extends WP_Widget {
 			 * @param array  $instance The widget setttings.
 			 * @param string $id_base  Widget type id.
 			 */
-			do_action( 'simple_image_widget_form_before', $instance, $this->id_base );
+			do_action( 'flex_widget_form_before', $instance, $this->id_base );
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'simple-image-widget' ); ?></label>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'flex-widget' ); ?></label>
 				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat">
 			</p>
 
-			<?php if ( ! is_simple_image_widget_legacy() ) : ?>
-				<p class="simple-image-widget-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
-					data-title="<?php esc_attr_e( 'Choose an Image', 'simple-image-widget' ); ?>"
-					data-update-text="<?php esc_attr_e( 'Update Image', 'simple-image-widget' ); ?>"
+			<?php if ( ! is_flex_widget_legacy() ) : ?>
+				<p class="flex-widget-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
+					data-title="<?php esc_attr_e( 'Choose an Image', 'flex-widget' ); ?>"
+					data-update-text="<?php esc_attr_e( 'Update Image', 'flex-widget' ); ?>"
 					data-target=".image-id">
 					<?php
 					if ( $image_id ) {
@@ -264,8 +264,8 @@ class Simple_Image_Widget extends WP_Widget {
 						unset( $button_class[ array_search( 'button-hero', $button_class ) ] );
 					}
 					?>
-					<input type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo absint( $image_id ); ?>" class="image-id simple-image-widget-control-target">
-					<a href="#" class="<?php echo esc_attr( join( ' ', $button_class ) ); ?>"><?php _e( 'Choose an Image', 'simple-image-widget' ); ?></a>
+					<input type="hidden" name="<?php echo esc_attr( $this->get_field_name( 'image_id' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_id' ) ); ?>" value="<?php echo absint( $image_id ); ?>" class="image-id flex-widget-control-target">
+					<a href="#" class="<?php echo esc_attr( join( ' ', $button_class ) ); ?>"><?php _e( 'Choose an Image', 'flex-widget' ); ?></a>
 				</p>
 			<?php endif; ?>
 
@@ -277,7 +277,7 @@ class Simple_Image_Widget extends WP_Widget {
 							$sizes = $this->get_image_sizes( $image_id );
 							?>
 							<p class="<?php echo esc_attr( $this->siw_field_class( 'image_size' ) ); ?>">
-								<label for="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>"><?php _e( 'Size:', 'simple-image-widget' ); ?></label>
+								<label for="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>"><?php _e( 'Size:', 'flex-widget' ); ?></label>
 								<select name="<?php echo esc_attr( $this->get_field_name( 'image_size' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>" class="widefat image-size"<?php echo ( sizeof( $sizes ) < 2 ) ? ' disabled="disabled"' : ''; ?>>
 									<?php
 									foreach ( $sizes as $id => $label ) {
@@ -297,13 +297,13 @@ class Simple_Image_Widget extends WP_Widget {
 						case 'link' :
 							?>
 							<p class="<?php echo esc_attr( $this->siw_field_class( 'link' ) ); ?>">
-								<label for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php _e( 'Link:', 'simple-image-widget' ); ?></label>
+								<label for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php _e( 'Link:', 'flex-widget' ); ?></label>
 								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>" value="<?php echo esc_url( $instance['link'] ); ?>" class="widefat">
 							</p>
 							<p class="<?php echo esc_attr( $this->siw_field_class( 'new_window' ) ); ?>" style="margin-top: -0.75em; padding-left: 2px">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'new_window' ) ); ?>">
 									<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'new_window' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'new_window' ) ); ?>" <?php checked( $instance['new_window'] ); ?>>
-									<?php _e( 'Open in new window?', 'simple-image-widget' ); ?>
+									<?php _e( 'Open in new window?', 'flex-widget' ); ?>
 								</label>
 							</p>
 							<?php
@@ -312,7 +312,7 @@ class Simple_Image_Widget extends WP_Widget {
 						case 'link_classes' :
 							?>
 							<p class="<?php echo esc_attr( $this->siw_field_class( 'link_classes' ) ); ?>">
-								<label for="<?php echo esc_attr( $this->get_field_id( 'link_classes' ) ); ?>"><?php _e( 'Link Classes:', 'simple-image-widget' ); ?></label>
+								<label for="<?php echo esc_attr( $this->get_field_id( 'link_classes' ) ); ?>"><?php _e( 'Link Classes:', 'flex-widget' ); ?></label>
 								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link_classes' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link_classes' ) ); ?>" value="<?php echo esc_attr( $instance['link_classes'] ); ?>" class="widefat">
 							</p>
 							<?php
@@ -321,7 +321,7 @@ class Simple_Image_Widget extends WP_Widget {
 						case 'link_text' :
 							?>
 							<p class="<?php echo esc_attr( $this->siw_field_class( 'link_text' ) ); ?>">
-								<label for="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>"><?php _e( 'Link Text:', 'simple-image-widget' ); ?></label>
+								<label for="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>"><?php _e( 'Link Text:', 'flex-widget' ); ?></label>
 								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link_text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>" value="<?php echo esc_attr( $instance['link_text'] ); ?>" class="widefat">
 							</p>
 							<?php
@@ -330,7 +330,7 @@ class Simple_Image_Widget extends WP_Widget {
 						case 'text' :
 							?>
 							<p class="<?php echo esc_attr( $this->siw_field_class( 'text' ) ); ?>">
-								<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'Text:', 'simple-image-widget' ); ?></label>
+								<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'Text:', 'flex-widget' ); ?></label>
 								<textarea name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" rows="4" class="widefat"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
 							</p>
 							<?php
@@ -341,7 +341,7 @@ class Simple_Image_Widget extends WP_Widget {
 							 * Display a custom field.
 							 *
 							 * This action will fire for custom fields
-							 * registered with the 'simple_image_widget_fields'
+							 * registered with the 'flex_widget_fields'
 							 * filter.
 							 *
 							 * @since 3.0.0
@@ -349,7 +349,7 @@ class Simple_Image_Widget extends WP_Widget {
 							 * @param array  $instance The widget setttings.
 							 * @param string $widget   Widget instance.
 							 */
-							do_action( 'simple_image_widget_field-' . sanitize_key( $field ), $instance, $this );
+							do_action( 'flex_widget_field-' . sanitize_key( $field ), $instance, $this );
 					}
 				}
 			}
@@ -362,10 +362,10 @@ class Simple_Image_Widget extends WP_Widget {
 			 * @param array  $instance The widget setttings.
 			 * @param string $id_base  Widget type id.
 			 */
-			do_action( 'simple_image_widget_form_after', $instance, $this->id_base );
+			do_action( 'flex_widget_form_after', $instance, $this->id_base );
 			?>
 
-		</div><!-- /.simple-image-widget-form -->
+		</div><!-- /.flex-widget-form -->
 		<?php
 	}
 
@@ -394,7 +394,7 @@ class Simple_Image_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = wp_parse_args( $new_instance, $old_instance );
 
-		$instance = apply_filters( 'simple_image_widget_instance', $instance, $new_instance, $old_instance, $this->id_base );
+		$instance = apply_filters( 'flex_widget_instance', $instance, $new_instance, $old_instance, $this->id_base );
 
 		$instance['title']      = wp_strip_all_tags( $new_instance['title'] );
 		$instance['image_id']   = absint( $new_instance['image_id'] );
@@ -454,11 +454,11 @@ class Simple_Image_Widget extends WP_Widget {
 	 * @return array List of image size keys and their localized labels.
 	 */
 	public function get_image_sizes( $image_id ) {
-		$sizes = array( 'full' => __( 'Full Size', 'simple-image-widget' ) );
+		$sizes = array( 'full' => __( 'Full Size', 'flex-widget' ) );
 
 		$imagedata = wp_get_attachment_metadata( $image_id );
 		if ( isset( $imagedata['sizes'] ) ) {
-			$size_names = Simple_Image_Widget_Plugin::get_image_size_names();
+			$size_names = Flex_Widget_Plugin::get_image_size_names();
 
 			$sizes['full'] .= ( isset( $imagedata['width'] ) && isset( $imagedata['height'] ) ) ? sprintf( ' (%d&times;%d)', $imagedata['width'], $imagedata['height'] ) : '';
 
@@ -479,13 +479,13 @@ class Simple_Image_Widget extends WP_Widget {
 	 * @since 3.0.0
 	 */
 	public function flush_widget_cache() {
-		$cache = (array) wp_cache_get( 'simple_image_widget', 'widget' );
+		$cache = (array) wp_cache_get( 'flex_widget', 'widget' );
 
 		if ( isset( $cache[ $this->id ] ) ) {
 			unset( $cache[ $this->id ] );
 		}
 
-		wp_cache_set( 'simple_image_widget', array_filter( $cache ), 'widget' );
+		wp_cache_set( 'flex_widget', array_filter( $cache ), 'widget' );
 	}
 
 	/**
@@ -500,7 +500,7 @@ class Simple_Image_Widget extends WP_Widget {
 			return;
 		}
 
-		wp_cache_delete( 'simple_image_widget', 'widget' );
+		wp_cache_delete( 'flex_widget', 'widget' );
 	}
 
 	/**
@@ -532,7 +532,7 @@ class Simple_Image_Widget extends WP_Widget {
 		 * @param string $id_base  Widget type id.
 		 */
 		return apply_filters(
-			'simple_image_widget_templates',
+			'flex_widget_templates',
 			$templates,
 			$args,
 			$instance,
@@ -549,9 +549,9 @@ class Simple_Image_Widget extends WP_Widget {
 	 * @return string
 	 */
 	protected function siw_field_class( $id ) {
-		$classes = array( 'simple-image-widget-field', 'simple-image-widget-field-' . sanitize_html_class( $id ) );
+		$classes = array( 'flex-widget-field', 'flex-widget-field-' . sanitize_html_class( $id ) );
 
-		$hidden_fields = Simple_Image_Widget_Plugin::get_hidden_fields();
+		$hidden_fields = Flex_Widget_Plugin::get_hidden_fields();
 		if ( in_array( $id, $hidden_fields ) ) {
 			$classes[] = 'is-hidden';
 		}

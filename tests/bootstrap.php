@@ -4,17 +4,17 @@ if ( false === $_tests_dir ) {
 	$_tests_dir = dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/tests/phpunit';
 }
 
-define( 'SIW_DIR_TESTDATA', dirname( __FILE__ ) . '/data/' );
+define( 'FW_DIR_TESTDATA', dirname( __FILE__ ) . '/data/' );
 
 $GLOBALS['wp_tests_options'] = array(
     'active_plugins'  => array(
-        'simple-image-widget/simple-image-widget.php',
+        'flex-widget/flex-widget.php',
     ),
     'timezone_string' => 'America/Los_Angeles',
 );
 
 function _manually_load_plugin() {
-	require( dirname( __FILE__ ) . '/../simple-image-widget.php' );
+	require( dirname( __FILE__ ) . '/../flex-widget.php' );
 }
 
 require_once( $_tests_dir . '/includes/functions.php' );
