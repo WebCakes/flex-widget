@@ -89,7 +89,7 @@ class Flex_Widget_Plugin {
 					'fullSizeLabel'   => __( 'Full Size', 'flex-widget' ),
 					'imageSizeNames'  => self::get_image_size_names(),
 				),
-				'screenOptionsNonce' => wp_create_nonce( 'save-siw-preferences' ),
+				'screenOptionsNonce' => wp_create_nonce( 'save-flex-preferences' ),
 			)
 		);
 	}
@@ -189,7 +189,7 @@ class Flex_Widget_Plugin {
 	 * @return array List of field ids.
 	 */
 	public static function get_hidden_fields() {
-		$hidden_fields = get_user_option( 'siw_hidden_fields', get_current_user_id() );
+		$hidden_fields = get_user_option( 'flex_hidden_fields', get_current_user_id() );
 
 		// Fields that are hidden by default.
 		if ( false === $hidden_fields ) {
@@ -212,7 +212,7 @@ class Flex_Widget_Plugin {
 	 * @since 4.1.0
 	 */
 	public function ajax_save_user_preferences() {
-		$nonce_action = 'save-siw-preferences';
+		$nonce_action = 'save-flex-preferences';
 		check_ajax_referer( $nonce_action, 'nonce' );
 		$data = array( 'nonce' => wp_create_nonce( $nonce_action ) );
 
@@ -222,7 +222,7 @@ class Flex_Widget_Plugin {
 
 		$hidden = isset( $_POST['hidden'] ) ? explode( ',', $_POST['hidden'] ) : array();
 		if ( is_array( $hidden ) ) {
-			update_user_option( $user->ID, 'siw_hidden_fields', $hidden );
+			update_user_option( $user->ID, 'flex_hidden_fields', $hidden );
 		}
 
 		wp_send_json_success( $data );

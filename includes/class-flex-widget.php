@@ -276,7 +276,7 @@ class Flex_Widget extends WP_Widget {
 						case 'image_size' :
 							$sizes = $this->get_image_sizes( $image_id );
 							?>
-							<p class="<?php echo esc_attr( $this->siw_field_class( 'image_size' ) ); ?>">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'image_size' ) ); ?>">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>"><?php _e( 'Size:', 'flex-widget' ); ?></label>
 								<select name="<?php echo esc_attr( $this->get_field_name( 'image_size' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'image_size' ) ); ?>" class="widefat image-size"<?php echo ( sizeof( $sizes ) < 2 ) ? ' disabled="disabled"' : ''; ?>>
 									<?php
@@ -296,11 +296,11 @@ class Flex_Widget extends WP_Widget {
 
 						case 'link' :
 							?>
-							<p class="<?php echo esc_attr( $this->siw_field_class( 'link' ) ); ?>">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'link' ) ); ?>">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php _e( 'Link:', 'flex-widget' ); ?></label>
 								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>" value="<?php echo esc_url( $instance['link'] ); ?>" class="widefat">
 							</p>
-							<p class="<?php echo esc_attr( $this->siw_field_class( 'new_window' ) ); ?>" style="margin-top: -0.75em; padding-left: 2px">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'new_window' ) ); ?>" style="margin-top: -0.75em; padding-left: 2px">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'new_window' ) ); ?>">
 									<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'new_window' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'new_window' ) ); ?>" <?php checked( $instance['new_window'] ); ?>>
 									<?php _e( 'Open in new window?', 'flex-widget' ); ?>
@@ -311,7 +311,7 @@ class Flex_Widget extends WP_Widget {
 
 						case 'link_classes' :
 							?>
-							<p class="<?php echo esc_attr( $this->siw_field_class( 'link_classes' ) ); ?>">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'link_classes' ) ); ?>">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'link_classes' ) ); ?>"><?php _e( 'Link Classes:', 'flex-widget' ); ?></label>
 								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link_classes' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link_classes' ) ); ?>" value="<?php echo esc_attr( $instance['link_classes'] ); ?>" class="widefat">
 							</p>
@@ -320,7 +320,7 @@ class Flex_Widget extends WP_Widget {
 
 						case 'link_text' :
 							?>
-							<p class="<?php echo esc_attr( $this->siw_field_class( 'link_text' ) ); ?>">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'link_text' ) ); ?>">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>"><?php _e( 'Link Text:', 'flex-widget' ); ?></label>
 								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link_text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>" value="<?php echo esc_attr( $instance['link_text'] ); ?>" class="widefat">
 							</p>
@@ -329,7 +329,7 @@ class Flex_Widget extends WP_Widget {
 
 						case 'text' :
 							?>
-							<p class="<?php echo esc_attr( $this->siw_field_class( 'text' ) ); ?>">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'text' ) ); ?>">
 								<label for="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>"><?php _e( 'Text:', 'flex-widget' ); ?></label>
 								<textarea name="<?php echo esc_attr( $this->get_field_name( 'text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'text' ) ); ?>" rows="4" class="widefat"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
 							</p>
@@ -548,7 +548,7 @@ class Flex_Widget extends WP_Widget {
 	 * @param string $id Field id.
 	 * @return string
 	 */
-	protected function siw_field_class( $id ) {
+	protected function flex_field_class( $id ) {
 		$classes = array( 'flex-widget-field', 'flex-widget-field-' . sanitize_html_class( $id ) );
 
 		$hidden_fields = Flex_Widget_Plugin::get_hidden_fields();
