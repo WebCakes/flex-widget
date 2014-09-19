@@ -12,8 +12,8 @@ A *Flexible* Wordpress widget that gives extreme flexibility to sidebars in Word
 The Flex Widget is specifically designed with templating in mind.  
 The main idea of the plugin is to allow the structure necessary for your widget and template to be customized in a custom widget/sidebar specific template. ( See FAQ Section )
 
-In the case that not all the flex widgets have the same structure within the widget sidebar, using the template system you can set a Template Name within the widget.  
-Using the Template Name, you can filter what to output based on the value within your custom template. ( See FAQ Section )
+In the case that not all the flex widgets have the same structure within the widget sidebar, using the custom template system you can set a 'Widget Template' within the widget.  
+Using the Widget Template field, you can filter what to output based on the value, within your custom template. ( See FAQ Section )
 
 = Additional Resources =
 
@@ -46,6 +46,33 @@ To use the template method, copy "`widget.php`" from the "`/templates`" director
 * `{plugin}/templates/widget.php`
 
 _Always use a [child theme](https://codex.wordpress.org/Child_Themes) to make changes if you acquired your theme from a third-party and you expect it to be updated. Otherwise, you run the risk of losing your customizations._
+
+= That's great but how do I filter by specific widget? =
+
+Well, using the Widget Template field within the widget, you can effectively filter either from the general `{theme}/flex-widget/widget.php` template or from a sidebar specific `{theme}/flex-widget/{sidebar_id}_widget.php` template.
+
+_But How?_
+
+Using the `$widget_template` hook within your custom template you can use a switch/case (preferred) or a basic if/else statement and check for your widget template value.
+
+If you created a Widget Template by the name of: `tasty-treats`  
+Then you can filter your output like so: 
+
+````
+<?php
+switch( $widget_template ) {
+  case 'tasty-treats' :
+    ?>
+    <!-- My Unique Widget HTML or PHP Code Here! -->
+    <?php
+    break;
+  default :
+    ?>
+      <!-- My Fallback / Default HTML or PHP Code Here! -->
+    <?php
+}
+?>
+````
 
 = How do I add alt text to images in the widget? =
 
