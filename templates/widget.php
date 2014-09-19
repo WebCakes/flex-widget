@@ -11,15 +11,17 @@
  * @since     4.0.0
 
  * Useful Variables for Custom Templating:
- *   $link         -- The raw value of 'Link' within the widget
- *   $link_title   -- The escaped value of 'Link Title' within the widget
- *   $link_classes -- The raw value of 'Link Class'
- *   $link_open    -- An anchor output that includes href, class, title, and target if available
- *   $link_close   -- Closing the anchor
- *   $title        -- The escaped value of 'Title' within the widget
- *   $title_raw    -- The raw value of 'Title' within the widget
- *   $text         -- The escaped value of 'Text' within the widget
- *   $text_raw     -- The raw value of 'Text' within the widget
+ *   $widget_template -- The sanitized slug value of 'Widget Template' within the widget.
+ *                    -- Use this as a filter for templates for specific widget(s) ( See FAQ section, within the README )
+ *   $link            -- The raw value of 'Link' within the widget
+ *   $link_title      -- The sanitized value of 'Link Title' within the widget
+ *   $link_classes    -- The raw value of 'Link Class'
+ *   $link_open       -- An anchor output that includes href, class, title, and target if available
+ *   $link_close      -- Closing the anchor
+ *   $title           -- The sanitized value of 'Title' within the widget
+ *   $title_raw       -- The raw value of 'Title' within the widget
+ *   $text            -- The sanitized value of 'Text' within the widget
+ *   $text_raw        -- The raw value of 'Text' within the widget
  */
 
 ?>

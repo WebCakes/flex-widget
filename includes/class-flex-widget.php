@@ -79,6 +79,7 @@ class Flex_Widget extends WP_Widget {
 		}
 
 		// Copy the original values so they can be used in hooks.
+		$instance['widget_template']  = empty( $instance['widget_template'] ) ? '' : $instance['widget_template'];
 		$instance['title_raw'] = empty( $instance['title'] ) ? '' : $instance['title'];
 		$instance['text_raw']  = empty( $instance['text'] ) ? '' : $instance['text'];
 		$instance['title']     = apply_filters( 'widget_title', $instance['title_raw'], $instance, $this->id_base );
@@ -187,16 +188,17 @@ class Flex_Widget extends WP_Widget {
 		$instance = wp_parse_args(
 			(array) $instance,
 			array(
-				'alt'          => '', // Legacy.
-				'image'        => '', // Legacy URL field.
-				'image_id'     => '',
-				'image_size'   => 'full',
-				'link'         => '',
-				'link_classes' => '',
-				'link_title'   => '',
-				'new_window'   => '',
-				'title'        => '',
-				'text'         => '',
+				'widget_template' => '',
+				'alt'             => '', // Legacy.
+				'image'           => '', // Legacy URL field.
+				'image_id'        => '',
+				'image_size'      => 'full',
+				'link'            => '',
+				'link_classes'    => '',
+				'link_title'      => '',
+				'new_window'      => '',
+				'title'           => '',
+				'text'            => '',
 			)
 		);
 
@@ -260,6 +262,15 @@ class Flex_Widget extends WP_Widget {
 			if ( ! empty( $fields ) ) {
 				foreach ( $fields as $field ) {
 					switch ( $field ) {
+						case 'widget_template' :
+							?>
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'widget_template' ) ); ?>">
+								<label for="<?php echo esc_attr( $this->get_field_id( 'widget_template' ) ); ?>"><?php _e( 'Widget Template:', 'flex-widget' ); ?></label>
+								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'widget_template' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'widget_template' ) ); ?>" value="<?php echo esc_attr( $instance['widget_template'] ); ?>" class="widefat">
+							</p>
+							<?php
+							break;
+
 						case 'image_size' :
 							$sizes = $this->get_image_sizes( $image_id );
 							?>
@@ -375,7 +386,7 @@ class Flex_Widget extends WP_Widget {
 	 * @return string List of field ids.
 	 */
 	public function form_fields() {
-		return array( 'image_size', 'link', 'link_title', 'link_classes', 'title', 'text' );
+		return array( 'widget_template', 'image_size', 'link', 'link_title', 'link_classes', 'title', 'text' );
 	}
 
 	/**
@@ -397,20 +408,23 @@ class Flex_Widget extends WP_Widget {
 		$instance['new_window'] = isset( $new_instance['new_window'] );
 
 		// Optional field that can be removed via a filter.
-		foreach ( array( 'link', 'link_classes', 'link_title', 'text' ) as $key ) {
+		foreach ( array( 'widget_template', 'link', 'link_title', 'link_classes', 'title', 'text' ) as $key ) {
 			if ( ! isset( $new_instance[ $key ] ) ) {
 				continue;
 			}
 
 			switch ( $key ) {
+				case 'widget_template' :
+					$instance['widget_template'] = sanitize_title_with_dashes( $new_instance['widget_template'] );
+					break;
 				case 'link' :
 					$instance['link'] = esc_url_raw( $new_instance['link'] );
 					break;
-				case 'link_classes' :
-					$instance['link_classes'] = implode( ' ', array_map( 'sanitize_html_class', explode( ' ', $new_instance['link_classes'] ) ) );
-					break;
 				case 'link_title' :
 					$instance['link_title'] = wp_kses_data( $new_instance['link_title'] );
+					break;
+				case 'link_classes' :
+					$instance['link_classes'] = implode( ' ', array_map( 'sanitize_html_class', explode( ' ', $new_instance['link_classes'] ) ) );
 					break;
 				case 'title' :
 					$instance['title'] = wp_kses_data( $new_instance['title'] );
