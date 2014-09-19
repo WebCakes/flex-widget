@@ -98,7 +98,7 @@ msgid "Open in new window?"
 msgstr "Ouvrir dans une nouvelle fenêtre?"
 
 #: includes/class-flex-widget.php:298
-msgid "Link Text:"
+msgid "Link Title:"
 msgstr "Label du lien:"
 
 #: includes/class-flex-widget.php:307

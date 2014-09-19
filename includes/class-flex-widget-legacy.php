@@ -61,8 +61,8 @@ class Flex_Widget_Legacy {
 		}
 
 		// Add a more link.
-		if ( ! empty( $instance['link_open'] ) && ! empty( $instance['link_text'] ) ) {
-			$output .= '<p class="more">' . $instance['link_open'] . $instance['link_text'] . $instance['link_close'] . '</p>';
+		if ( ! empty( $instance['link_open'] ) && ! empty( $instance['link_title'] ) ) {
+			$output .= '<p class="more">' . $instance['link_open'] . $instance['link_title'] . $instance['link_close'] . '</p>';
 		}
 
 		return $output;

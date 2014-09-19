@@ -104,7 +104,7 @@ HTML;
 			'image'      => wp_get_attachment_url( $id ),
 			'image_size' => 'thumbnail',
 			'link'       => 'http://example.com/',
-			'link_text'  => 'Link Text',
+			'link_title'  => 'Link Title',
 			'new_window' => false,
 			'title'      => 'Title',
 			'text'       => 'Text',

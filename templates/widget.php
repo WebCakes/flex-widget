@@ -9,37 +9,44 @@
  * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
  * @since     4.0.0
+
+ * Useful Variables for Custom Templating:
+ *   $link         -- The raw value of 'Link' within the widget
+ *   $link_title   -- The escaped value of 'Link Title' within the widget
+ *   $link_classes -- The raw value of 'Link Class'
+ *   $link_open    -- An anchor output that includes href, class, title, and target if available
+ *   $link_close   -- Closing the anchor
+ *   $title        -- The escaped value of 'Title' within the widget
+ *   $title_raw    -- The raw value of 'Title' within the widget
+ *   $text         -- The escaped value of 'Text' within the widget
+ *   $text_raw     -- The raw value of 'Text' within the widget
  */
+
 ?>
 
-<?php
-if ( ! empty( $title ) ) :
-	echo $before_title . $title . $after_title;
-endif;
-?>
+<?php // Image
+  if ( ! empty( $image_id ) ) : ?>
 
-<?php if ( ! empty( $image_id ) ) : ?>
-	<p class="flex">
-		<?php
-		echo $link_open;
-		echo wp_get_attachment_image( $image_id, $image_size );
-		echo $link_close;
-		?>
-	</p>
+  <?php
+  echo $link_open;
+  echo wp_get_attachment_image( $image_id, $image_size );
+  echo $link_close;
+  ?>
+
 <?php endif; ?>
 
-<?php
-if ( ! empty( $text ) ) :
-	echo wpautop( $text );
-endif;
+
+<?php // Title
+  if ( ! empty( $title ) ) :
+    $before_title = ( empty( $before_title ) ) ? '<h1>' : $before_title;
+    $after_title = ( empty( $after_title ) ) ? '</h1>' : $after_title;
+
+    echo $before_title . $title . $after_title;
+  endif;
 ?>
 
-<?php if ( ! empty( $link_text ) ) : ?>
-	<p class="more">
-		<?php
-		echo $text_link_open;
-		echo $link_text;
-		echo $text_link_close;
-		?>
-	</p>
-<?php endif; ?>
+<?php // Text
+  if ( ! empty( $text ) ) :
+    echo wpautop( $text );
+  endif;
+?>

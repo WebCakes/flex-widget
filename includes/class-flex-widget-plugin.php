@@ -115,8 +115,9 @@ class Flex_Widget_Plugin {
 			'image_size'   => __( 'Image Size', 'flex-widget' ),
 			'link'         => __( 'Link', 'flex-widget' ),
 			'link_classes' => __( 'Link Classes', 'flex-widget' ),
-			'link_text'    => __( 'Link Text', 'flex-widget' ),
+			'link_title'    => __( 'Link Title', 'flex-widget' ),
 			'new_window'   => __( 'New Window', 'flex-widget' ),
+			'title'         => __( 'Title', 'flex-widget' ),
 			'text'         => __( 'Text', 'flex-widget' ),
 		);
 
@@ -193,7 +194,8 @@ class Flex_Widget_Plugin {
 
 		// Fields that are hidden by default.
 		if ( false === $hidden_fields ) {
-			$hidden_fields = array( 'link_classes' );
+			/* $hidden_fields = array( 'link_classes' ); */
+			$hidden_fields = array();
 		}
 
 		/**

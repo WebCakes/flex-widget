@@ -73,7 +73,7 @@ msgid "Link Classes"
 msgstr "Linkin luokat"
 
 #: includes/class-flex-widget-plugin.php:118
-msgid "Link Text"
+msgid "Link Title"
 msgstr "Linkin teksti"
 
 #: includes/class-flex-widget-plugin.php:119
@@ -134,7 +134,7 @@ msgid "Link Classes:"
 msgstr "Linkin luokat:"
 
 #: includes/class-flex-widget.php:324
-msgid "Link Text:"
+msgid "Link Title:"
 msgstr "Linkin teksti:"
 
 #: includes/class-flex-widget.php:333

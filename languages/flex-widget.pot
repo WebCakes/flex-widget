@@ -74,7 +74,7 @@ msgid "Link Classes"
 msgstr ""
 
 #: includes/class-flex-widget-plugin.php:118
-msgid "Link Text"
+msgid "Link Title"
 msgstr ""
 
 #: includes/class-flex-widget-plugin.php:119
@@ -135,7 +135,7 @@ msgid "Link Classes:"
 msgstr ""
 
 #: includes/class-flex-widget.php:324
-msgid "Link Text:"
+msgid "Link Title:"
 msgstr ""
 
 #: includes/class-flex-widget.php:333

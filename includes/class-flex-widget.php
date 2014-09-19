@@ -79,10 +79,10 @@ class Flex_Widget extends WP_Widget {
 		}
 
 		// Copy the original values so they can be used in hooks.
-		$instance['text_raw']  = empty( $instance['text'] ) ? '' : $instance['text'];
 		$instance['title_raw'] = empty( $instance['title'] ) ? '' : $instance['title'];
-		$instance['text']      = apply_filters( 'widget_text', $instance['text_raw'], $instance, $this->id_base );
+		$instance['text_raw']  = empty( $instance['text'] ) ? '' : $instance['text'];
 		$instance['title']     = apply_filters( 'widget_title', $instance['title_raw'], $instance, $this->id_base );
+		$instance['text']      = apply_filters( 'widget_text', $instance['text_raw'], $instance, $this->id_base );
 
 		// Start building the output.
 		$output = '';
@@ -98,28 +98,15 @@ class Flex_Widget extends WP_Widget {
 		if ( empty( $output ) ) {
 			$instance['link_open']       = '';
 			$instance['link_close']      = '';
-			$instance['text_link_open']  = '';
-			$instance['text_link_close'] = '';
 
 			if ( ! empty ( $instance['link'] ) ) {
+				$href = ' href="' . esc_url( $instance['link'] ) . '"';
+				$classes = ( !empty( $instance['link_classes'] ) ) ? ' class="' . esc_attr( $instance['link_classes'] ) . '"' : '';
+				$link_title = ( !empty( $instance['link_title'] ) ) ? ' title="' . esc_attr( $instance['link_title'] ) . '"' : '';
 				$target = ( empty( $instance['new_window'] ) ) ? '' : ' target="_blank"';
 
-				$instance['link_open']  = '<a href="' . esc_url( $instance['link'] ) . '"' . $target . '>';
+				$instance['link_open']  = '<a' . $href . $classes . $link_title . $target . '>';
 				$instance['link_close'] = '</a>';
-
-				// This is to differentiate between the image link and text link.
-				$instance['text_link_open']  = $instance['link_open'];
-				$instance['text_link_close'] = $instance['link_close'];
-
-				// The link classes should only be added to the text link.
-				if ( ! empty( $instance['link_classes'] ) ) {
-					$instance['text_link_open'] = sprintf(
-						'<a href="%1$s" class="%3$s"%2$s>',
-						esc_url( $instance['link'] ),
-						$target,
-						esc_attr( $instance['link_classes'] )
-					);
-				}
 			}
 
 			$output = $this->render( $args, $instance );
@@ -206,7 +193,7 @@ class Flex_Widget extends WP_Widget {
 				'image_size'   => 'full',
 				'link'         => '',
 				'link_classes' => '',
-				'link_text'    => '',
+				'link_title'   => '',
 				'new_window'   => '',
 				'title'        => '',
 				'text'         => '',
@@ -249,8 +236,8 @@ class Flex_Widget extends WP_Widget {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'flex-widget' ); ?></label>
-				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat">
+				<label for="<?php echo esc_attr( $this->get_field_id( 'widget-title' ) ); ?>"><?php _e( 'Widget Title:', 'flex-widget' ); ?></label>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'widget-title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'widget-title' ) ); ?>" value="<?php echo esc_attr( $instance['widget-title'] ); ?>" class="widefat">
 			</p>
 
 			<?php if ( ! is_flex_widget_legacy() ) : ?>
@@ -318,12 +305,21 @@ class Flex_Widget extends WP_Widget {
 							<?php
 							break;
 
-						case 'link_text' :
+						case 'link_title' :
 							?>
-							<p class="<?php echo esc_attr( $this->flex_field_class( 'link_text' ) ); ?>">
-								<label for="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>"><?php _e( 'Link Text:', 'flex-widget' ); ?></label>
-								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link_text' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link_text' ) ); ?>" value="<?php echo esc_attr( $instance['link_text'] ); ?>" class="widefat">
+							<p class="<?php echo esc_attr( $this->flex_field_class( 'link_title' ) ); ?>">
+								<label for="<?php echo esc_attr( $this->get_field_id( 'link_title' ) ); ?>"><?php _e( 'Link Title:', 'flex-widget' ); ?></label>
+								<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link_title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'link_title' ) ); ?>" value="<?php echo esc_attr( $instance['link_title'] ); ?>" class="widefat">
 							</p>
+							<?php
+							break;
+
+						case 'title' :
+							?>
+              <p class="<?php echo esc_attr( $this->flex_field_class( 'title' ) ); ?>">
+                <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'flex-widget' ); ?></label>
+                <input type="text" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat">
+              </p>
 							<?php
 							break;
 
@@ -379,7 +375,7 @@ class Flex_Widget extends WP_Widget {
 	 * @return string List of field ids.
 	 */
 	public function form_fields() {
-		return array( 'image_size', 'link', 'link_text', 'link_classes', 'text' );
+		return array( 'image_size', 'link', 'link_title', 'link_classes', 'title', 'text' );
 	}
 
 	/**
@@ -401,7 +397,7 @@ class Flex_Widget extends WP_Widget {
 		$instance['new_window'] = isset( $new_instance['new_window'] );
 
 		// Optional field that can be removed via a filter.
-		foreach ( array( 'link', 'link_classes', 'link_text', 'text' ) as $key ) {
+		foreach ( array( 'link', 'link_classes', 'link_title', 'text' ) as $key ) {
 			if ( ! isset( $new_instance[ $key ] ) ) {
 				continue;
 			}
@@ -413,8 +409,11 @@ class Flex_Widget extends WP_Widget {
 				case 'link_classes' :
 					$instance['link_classes'] = implode( ' ', array_map( 'sanitize_html_class', explode( ' ', $new_instance['link_classes'] ) ) );
 					break;
-				case 'link_text' :
-					$instance['link_text'] = wp_kses_data( $new_instance['link_text'] );
+				case 'link_title' :
+					$instance['link_title'] = wp_kses_data( $new_instance['link_title'] );
+					break;
+				case 'title' :
+					$instance['title'] = wp_kses_data( $new_instance['title'] );
 					break;
 				case 'text' :
 					$instance['text'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['text'] ) ) );
