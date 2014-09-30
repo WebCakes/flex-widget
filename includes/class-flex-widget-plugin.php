@@ -113,6 +113,7 @@ class Flex_Widget_Plugin {
 
 		$fields = array(
 			'widget_template'   => __( 'Widget Template', 'flex-widget' ),
+			'image_id'   => __( 'Image', 'flex-widget' ),
 			'image_size'   => __( 'Image Size', 'flex-widget' ),
 			'link'         => __( 'Link', 'flex-widget' ),
 			'link_classes' => __( 'Link Classes', 'flex-widget' ),

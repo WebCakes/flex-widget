@@ -80,10 +80,14 @@ class Flex_Widget extends WP_Widget {
 
 		// Copy the original values so they can be used in hooks.
 		$instance['widget_template']  = empty( $instance['widget_template'] ) ? '' : $instance['widget_template'];
-		$instance['title_raw'] = empty( $instance['title'] ) ? '' : $instance['title'];
-		$instance['text_raw']  = empty( $instance['text'] ) ? '' : $instance['text'];
+		$instance['title_raw'] = empty( $instance['title'] ) ? '' : __( $instance['title'], 'flex-widget' );
+		$instance['text_raw']  = empty( $instance['text'] ) ? '' : __( $instance['text'], 'flex-widget' );
 		$instance['title']     = apply_filters( 'widget_title', $instance['title_raw'], $instance, $this->id_base );
 		$instance['text']      = apply_filters( 'widget_text', $instance['text_raw'], $instance, $this->id_base );
+
+    // Pass variables through GetText for String Translation
+    $instance['link'] = empty( $instance['link'] ) ? '' : __( $instance['link'], 'flex-widget' );
+    $instance['link_title'] = empty( $instance['link_title'] ) ? '' : __( $instance['link_title'], 'flex-widget' );
 
 		// Start building the output.
 		$output = '';
@@ -159,7 +163,7 @@ class Flex_Widget extends WP_Widget {
 			$data['after_title'] = $args['after_title'];
 			$data['before_title'] = $args['before_title'];
 			$data['image_size'] = $image_size = ( ! empty( $instance['image_size'] ) ) ? $instance['image_size'] : apply_filters( 'flex_widget_output_default_size', 'medium', $this->id_base );
-			$data['title'] = ( empty( $instance['title'] ) ) ? '' : $instance['title'];
+			$data['widget_title'] = ( empty( $instance['widget_title'] ) ) ? '' : $instance['widget_title'];
 			$data = array_merge( $instance, $data );
 			$data = apply_filters( 'flex_widget_template_data', $data );
 
@@ -203,7 +207,7 @@ class Flex_Widget extends WP_Widget {
 		);
 
 		$instance['image_id'] = absint( $instance['image_id'] );
-		$instance['title']    = wp_strip_all_tags( $instance['title'] );
+		$instance['widget_title'] = wp_strip_all_tags( $instance['widget_title'] );
 
 		$button_class = array( 'button', 'button-hero', 'flex-widget-control-choose' );
 		$image_id     = $instance['image_id'];
@@ -238,12 +242,12 @@ class Flex_Widget extends WP_Widget {
 			?>
 
 			<p>
-				<label for="<?php echo esc_attr( $this->get_field_id( 'widget-title' ) ); ?>"><?php _e( 'Widget Title:', 'flex-widget' ); ?></label>
-				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'widget-title' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'widget-title' ) ); ?>" value="<?php echo esc_attr( $instance['widget-title'] ); ?>" class="widefat">
+				<label for="<?php echo str_replace( '_', '-', esc_attr( $this->get_field_id( 'widget_title' ) ) ); ?>"><?php _e( 'Widget Title:', 'flex-widget' ); ?></label>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'widget_title' ) ); ?>" id="<?php echo str_replace( '_', '-', esc_attr( $this->get_field_id( 'widget_title' ) ) ); ?>" value="<?php echo esc_attr( $instance['widget_title'] ); ?>" class="widefat">
 			</p>
 
 			<?php if ( ! is_flex_widget_legacy() ) : ?>
-				<p class="flex-widget-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
+				<p class="<?php echo esc_attr( $this->flex_field_class( 'image_id' ) ); ?> flex-widget-control<?php echo ( $image_id ) ? ' has-image' : ''; ?>"
 					data-title="<?php esc_attr_e( 'Choose an Image', 'flex-widget' ); ?>"
 					data-update-text="<?php esc_attr_e( 'Update Image', 'flex-widget' ); ?>"
 					data-target=".image-id">
@@ -386,7 +390,7 @@ class Flex_Widget extends WP_Widget {
 	 * @return string List of field ids.
 	 */
 	public function form_fields() {
-		return array( 'widget_template', 'image_size', 'link', 'link_title', 'link_classes', 'title', 'text' );
+		return array( 'widget_template', 'image_id', 'image_size', 'link', 'link_title', 'link_classes', 'new_window', 'title', 'text' );
 	}
 
 	/**
@@ -403,12 +407,10 @@ class Flex_Widget extends WP_Widget {
 
 		$instance = apply_filters( 'flex_widget_instance', $instance, $new_instance, $old_instance, $this->id_base );
 
-		$instance['title']      = wp_strip_all_tags( $new_instance['title'] );
-		$instance['image_id']   = absint( $new_instance['image_id'] );
-		$instance['new_window'] = isset( $new_instance['new_window'] );
+		$instance['widget_title'] = wp_strip_all_tags( $new_instance['widget_title'] );
 
 		// Optional field that can be removed via a filter.
-		foreach ( array( 'widget_template', 'link', 'link_title', 'link_classes', 'title', 'text' ) as $key ) {
+		foreach ( array( 'widget_template', 'image_id', 'link', 'link_title', 'link_classes', 'new_window', 'title', 'text' ) as $key ) {
 			if ( ! isset( $new_instance[ $key ] ) ) {
 				continue;
 			}
@@ -416,6 +418,9 @@ class Flex_Widget extends WP_Widget {
 			switch ( $key ) {
 				case 'widget_template' :
 					$instance['widget_template'] = sanitize_title_with_dashes( $new_instance['widget_template'] );
+					break;
+				case 'image_id' :
+          $instance['image_id'] = absint( $new_instance['image_id'] );
 					break;
 				case 'link' :
 					$instance['link'] = esc_url_raw( $new_instance['link'] );
@@ -426,8 +431,11 @@ class Flex_Widget extends WP_Widget {
 				case 'link_classes' :
 					$instance['link_classes'] = implode( ' ', array_map( 'sanitize_html_class', explode( ' ', $new_instance['link_classes'] ) ) );
 					break;
+				case 'new_window' :
+          $instance['new_window'] = isset( $new_instance['new_window'] );
+					break;
 				case 'title' :
-					$instance['title'] = wp_kses_data( $new_instance['title'] );
+					$instance['title'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['title'] ) ) );
 					break;
 				case 'text' :
 					$instance['text'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['text'] ) ) );
