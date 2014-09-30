@@ -112,6 +112,7 @@ class Flex_Widget_Plugin {
 		$settings .= sprintf( '<h5>%s</h5>', __( 'Flex Widget', 'flex-widget' ) );
 
 		$fields = array(
+			'widget_template'   => __( 'Widget Template', 'flex-widget' ),
 			'image_size'   => __( 'Image Size', 'flex-widget' ),
 			'link'         => __( 'Link', 'flex-widget' ),
 			'link_classes' => __( 'Link Classes', 'flex-widget' ),
