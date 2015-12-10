@@ -8,7 +8,7 @@
  * @package   FlexWidget
  * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
- * @since     4.0.0
+ * @since     1.0.0
 
  * Useful Variables for Custom Templating:
  *   $widget_template -- The sanitized slug value of 'Widget Template' within the widget.

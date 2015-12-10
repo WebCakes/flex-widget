@@ -5,14 +5,14 @@
  * @package   FlexWidget
  * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
- * @since     3.0.0
+ * @since     1.0.0
  */
 
 /**
  * Image widget class.
  *
  * @package FlexWidget
- * @since   3.0.0
+ * @since   1.0.0
  */
 class Flex_Widget extends WP_Widget {
 	/**
@@ -20,7 +20,7 @@ class Flex_Widget extends WP_Widget {
 	 *
 	 * Child classes may override the defaults.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 * @see   WP_Widget::construct()
 	 *
 	 * @param string $id_base Optional Base ID for the widget, lower case, if
@@ -66,7 +66,7 @@ class Flex_Widget extends WP_Widget {
 	 * Filters the instance data, fetches the output, displays it, then caches
 	 * it. Overload or filter the render() method to modify output.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array $args     Registered sidebar arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The widget instance settings.
@@ -134,7 +134,7 @@ class Flex_Widget extends WP_Widget {
 	 * filtering, or resorting to adding a filter, calling the parent method,
 	 * then removing the filter.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array   $args     Registered sidebar arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array   $instance The widget instance settings.
@@ -146,7 +146,7 @@ class Flex_Widget extends WP_Widget {
 		/**
 		 * Widget HTML output.
 		 *
-		 * @since 3.0.0
+		 * @since 1.0.0
 		 *
 		 * @param string $output   Widget output.
 		 * @param array  $args     Registered sidebar arguments including before_title, after_title, before_widget, and after_widget.
@@ -184,7 +184,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Display the form to edit widget settings.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array $instance The widget settings.
 	 */
@@ -219,7 +219,7 @@ class Flex_Widget extends WP_Widget {
 		 * existing fields can be removed here. Use the widget type id to limit
 		 * fields to a particular type of widget.
 		 *
-		 * @since 3.0.0
+		 * @since 1.0.0
 		 *
 		 * @param array  $fields  List of field ids.
 		 * @param string $id_base Widget type id.
@@ -233,7 +233,7 @@ class Flex_Widget extends WP_Widget {
 			/**
 			 * Display additional information or HTML before the widget edit form.
 			 *
-			 * @since 3.0.0
+			 * @since 1.0.0
 			 *
 			 * @param array  $instance The widget setttings.
 			 * @param string $id_base  Widget type id.
@@ -355,7 +355,7 @@ class Flex_Widget extends WP_Widget {
 							 * registered with the 'flex_widget_fields'
 							 * filter.
 							 *
-							 * @since 3.0.0
+							 * @since 1.0.0
 							 *
 							 * @param array  $instance The widget setttings.
 							 * @param string $widget   Widget instance.
@@ -368,7 +368,7 @@ class Flex_Widget extends WP_Widget {
 			/**
 			 * Display additional information or HTML after the widget edit form.
 			 *
-			 * @since 3.0.0
+			 * @since 1.0.0
 			 *
 			 * @param array  $instance The widget setttings.
 			 * @param string $id_base  Widget type id.
@@ -385,7 +385,7 @@ class Flex_Widget extends WP_Widget {
 	 *
 	 * Can be easily overloaded by a child class.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string List of field ids.
 	 */
@@ -396,7 +396,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Save and sanitize widget settings.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $new_instance New widget settings.
 	 * @param array  $old_instance Previous widget settings.
@@ -451,7 +451,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Determine if the widget is being displayed in the customizer.
 	 *
-	 * @since 4.0.1
+	 * @since 1.0.0
 	 * @link  https://core.trac.wordpress.org/ticket/27538
 	 *
 	 * @return bool
@@ -469,7 +469,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Get the various sizes of an image.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param  int   $image_id Image attachment ID.
 	 * @return array List of image size keys and their localized labels.
@@ -497,7 +497,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Remove a single image widget from the cache.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	public function flush_widget_cache() {
 		$cache = (array) wp_cache_get( 'flex_widget', 'widget' );
@@ -512,7 +512,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Flush the cache for all image widgets.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param int $post_id Post ID.
 	 */
@@ -527,7 +527,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Retrieve a list of templates to look up.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $args     Registered sidebar arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array  $instance The widget instance settings.
@@ -545,7 +545,7 @@ class Flex_Widget extends WP_Widget {
 		 *
 		 * Child widgets should consider adding a new template using the widget type id ($this->id_base).
 		 *
-		 * @since 4.0.0
+		 * @since 1.0.0
 		 *
 		 * @param array  $templates List of template names.
 		 * @param array  $args     Registered sidebar arguments including before_title, after_title, before_widget, and after_widget.
@@ -564,7 +564,7 @@ class Flex_Widget extends WP_Widget {
 	/**
 	 * Retrieve HTML classes for a field container.
 	 *
-	 * @since 4.1.0
+	 * @since 1.0.0
 	 *
 	 * @param string $id Field id.
 	 * @return string

@@ -5,20 +5,20 @@
  * @package   FlexWidget
  * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
- * @since     4.0.0
+ * @since     1.0.0
  */
 
 /**
  * Class to add support for features and data from previous versions.
  *
  * @package FlexWidget
- * @since 4.0.0
+ * @since 1.0.0
  */
 class Flex_Widget_Legacy {
 	/**
 	 * Load legacy support.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 */
 	public function load() {
 		add_filter( 'flex_widget_output', array( $this, 'output' ), 10, 4 );
@@ -30,7 +30,7 @@ class Flex_Widget_Legacy {
 	/**
 	 * Legacy widget output.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string  $output   HTML output.
 	 * @param array   $args     Registered sidebar arguments including before_title, after_title, before_widget, and after_widget.
@@ -71,7 +71,7 @@ class Flex_Widget_Legacy {
 	/**
 	 * Remove the image size field for versions of WordPress older than 3.5.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $fields  List of field ids.
 	 * @param string $id_base Base widget type id.
@@ -94,7 +94,7 @@ class Flex_Widget_Legacy {
 	/**
 	 * Display legacy fields in the widget edit form.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array     $instance The widget instance settings.
 	 * @param WP_Widget $widget   Widget instance.
@@ -130,7 +130,7 @@ class Flex_Widget_Legacy {
 	 *
 	 * Called in Flex_Widget::update().
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array  $instance     Merged widget settings.
 	 * @param array  $new_instance New widget settings.

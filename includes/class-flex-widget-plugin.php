@@ -5,20 +5,20 @@
  * @package   FlexWidget
  * @copyright Copyright (c) 2014, WebCakes, Inc. & Blazer Six, Inc.
  * @license   GPL-2.0+
- * @since     3.0.0
+ * @since     1.0.0
  */
 
 /**
  * The main plugin class for loading the widget and attaching hooks.
  *
  * @package FlexWidget
- * @since   3.0.0
+ * @since   1.0.0
  */
 class Flex_Widget_Plugin {
 	/**
 	 * Set up the widget.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	public function load() {
 		self::load_textdomain();
@@ -40,7 +40,7 @@ class Flex_Widget_Plugin {
 	/**
 	 * Localize the plugin strings.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( 'flex-widget', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
@@ -49,7 +49,7 @@ class Flex_Widget_Plugin {
 	/**
 	 * Register the image widget.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	public function register_widget() {
 		register_widget( 'Flex_Widget' );
@@ -65,7 +65,7 @@ class Flex_Widget_Plugin {
 	 * Custom image size labels need to be added using the
 	 * 'image_size_names_choose' filter.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 */
 	public function register_assets() {
 		wp_register_style(
@@ -98,7 +98,7 @@ class Flex_Widget_Plugin {
 	 * Add checkboxes to the screen options tab on the Widgets screen for
 	 * togglable fields.
 	 *
-	 * @since 4.1.0
+	 * @since 1.0.0
 	 *
 	 * @param string    $settings Screen options output.
 	 * @param WP_Screen $screen   Current screen.
@@ -126,7 +126,7 @@ class Flex_Widget_Plugin {
 		/**
 		 * List of hideable fields.
 		 *
-		 * @since 4.1.0
+		 * @since 1.0.0
 		 *
 		 * @param array $fields List of fields with ids as keys and labels as values.
 		 */
@@ -148,7 +148,7 @@ class Flex_Widget_Plugin {
 	/**
 	 * Enqueue scripts needed for selecting media.
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $hook_suffix Screen id.
 	 */
@@ -168,7 +168,7 @@ class Flex_Widget_Plugin {
 	 * @see image_size_input_fields()
 	 * @see http://core.trac.wordpress.org/ticket/20663
 	 *
-	 * @since 3.0.0
+	 * @since 1.0.0
 	 *
 	 * @return array Array of thumbnail sizes.
 	 */
@@ -187,7 +187,7 @@ class Flex_Widget_Plugin {
 	/**
 	 * Retrieve a list of hidden fields.
 	 *
-	 * @since 4.1.0
+	 * @since 1.0.0
 	 *
 	 * @return array List of field ids.
 	 */
@@ -203,7 +203,7 @@ class Flex_Widget_Plugin {
 		/**
 		 * List of hidden field ids.
 		 *
-		 * @since 4.1.0
+		 * @since 1.0.0
 		 *
 		 * @param array $hidden_fields List of hidden field ids.
 		 */
@@ -213,7 +213,7 @@ class Flex_Widget_Plugin {
 	/**
 	 * AJAX callback to save the user's hidden fields.
 	 *
-	 * @since 4.1.0
+	 * @since 1.0.0
 	 */
 	public function ajax_save_user_preferences() {
 		$nonce_action = 'save-flex-preferences';

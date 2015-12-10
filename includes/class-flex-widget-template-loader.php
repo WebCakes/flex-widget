@@ -8,7 +8,7 @@
  * template scope.
  *
  * @package   FlexWidget
- * @since     4.0.0
+ * @since     1.0.0
  * @author    Gary Jones
  * @link      http://github.com/GaryJones/Gamajo-Template-Loader
  * @copyright 2013 Gary Jones
@@ -19,14 +19,14 @@
  * Template loader.
  *
  * @package FlexWidget
- * @since   4.0.0
+ * @since   1.0.0
  * @author  Gary Jones
  */
 class Flex_Widget_Template_Loader {
 	/**
 	 * Prefix for filter names.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @type string
 	 */
@@ -36,7 +36,7 @@ class Flex_Widget_Template_Loader {
 	 * Directory name where custom templates for this plugin should be found in
 	 * the theme.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @type string
 	 */
@@ -45,7 +45,7 @@ class Flex_Widget_Template_Loader {
 	/**
 	 * Reference to the root directory path of this plugin.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @type string
 	 */
@@ -54,7 +54,7 @@ class Flex_Widget_Template_Loader {
 	/**
 	 * Directory name where templates are found in this plugin.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @type string
 	 */
@@ -66,7 +66,7 @@ class Flex_Widget_Template_Loader {
 	 * Accepts an array of class properties when instantiated to override the
 	 * defaults.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param array $args List of class properties.
 	 */
@@ -82,7 +82,7 @@ class Flex_Widget_Template_Loader {
 	/**
 	 * Retrieve a template part.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @uses Flex_Widget_Template_Loader::get_template_possble_parts()
 	 *     Create file names of templates.
@@ -98,7 +98,7 @@ class Flex_Widget_Template_Loader {
 		/**
 		 * Execute code for this part.
 		 *
-		 * @since 4.0.0
+		 * @since 1.0.0
 		 *
 		 * @param string $slug
 		 * @param string $name
@@ -115,7 +115,7 @@ class Flex_Widget_Template_Loader {
 	/**
 	 * Given a slug and optional name, create the file names of templates.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $slug
 	 * @param string $name
@@ -135,7 +135,7 @@ class Flex_Widget_Template_Loader {
 		 * least specific last.
 		 * e.g. 0 => recipe-instructions.php, 1 => recipe.php
 		 *
-		 * @since 4.0.0
+		 * @since 1.0.0
 		 *
 		 * @param array  $templates Names of template files that should be looked for, for given slug and name.
 		 * @param string $slug      Template slug.
@@ -151,7 +151,7 @@ class Flex_Widget_Template_Loader {
 	 * inherit from a parent theme can just overload one file. If the template is
 	 * not found in either of those, it looks in the theme-compat folder last.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @uses Flex_Widget_Template_Loader::get_template_paths() Return a
 	 *     list of paths to check for template locations.
@@ -194,7 +194,7 @@ class Flex_Widget_Template_Loader {
 	/**
 	 * Load a template file.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $template_file Absolute path to a file or list of template parts.
 	 * @param array  $data          Optional. List of variables to extract into the template scope.
@@ -220,7 +220,7 @@ class Flex_Widget_Template_Loader {
 	 * file. If the template is not found in either of those, it looks in the
 	 * theme-compat folder last.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @return mixed|void
 	 */
@@ -240,7 +240,7 @@ class Flex_Widget_Template_Loader {
 		/**
 		 * Allow ordered list of template paths to be amended.
 		 *
-		 * @since 4.0.0
+		 * @since 1.0.0
 		 *
 		 * @param array $var Default is directory in child theme at index 1, parent theme at 10, and plugin at 100.
 		 */
@@ -255,7 +255,7 @@ class Flex_Widget_Template_Loader {
 	/**
 	 * Return the path to the templates directory in this plugin.
 	 *
-	 * @since 4.0.0
+	 * @since 1.0.0
 	 *
 	 * @return string
 	 */
