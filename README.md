@@ -90,5 +90,5 @@ The widget uses the core function `wp_get_attachment_image()` to display the ima
 
 Forked and Maintained by [WebCakes](http://www.webcakes.ca)  
 Originally Built by [Brady Vercher](http://twitter.com/bradyvercher)  
-Forked from the [flex-widget repository](https://github.com/blazersix/flex-widget).  
-Copyright 2014  [WebCakes, Inc.](http://www.webcakes.ca) & [Blazer Six, Inc.](http://www.blazersix.com/)
+Forked from the [simple-image-widget repository](https://github.com/cedaro/simple-image-widget).  
+Copyright 2015  [WebCakes, Inc.](http://www.webcakes.ca), [Cedaro](http://www.cedaro.com/) & [Blazer Six, Inc.](http://www.blazersix.com/)
