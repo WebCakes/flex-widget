@@ -31,7 +31,11 @@ Using the Widget Template field, you can filter what to output based on the valu
 
 == Installation ==
 
-Clone the Flex Widget repository from GitHub ( https://github.com/WebCakes/flex-widget ) and insert the files into your Wordpress plugin's directory ( wp-content/plugins/flex-widget ).
+Download a zip of the Latest Release from GitHub ( https://github.com/WebCakes/flex-widget/releases/latest ) or clone the current Flex Widget repository ( https://github.com/WebCakes/flex-widget/tree/master ) and insert the files into the Wordpress plugin directory ( wp-content/plugins/flex-widget ).
+
+Next you will need to activate the plugin in the Wordpress backend.
+
+Your new widget should now appear in the list of available widgets.
 
 == Frequently Asked Questions ==
 
@@ -47,7 +51,7 @@ To use the template method, copy "`widget.php`" from the "`/templates`" director
 
 _Always use a [child theme](https://codex.wordpress.org/Child_Themes) to make changes if you acquired your theme from a third-party and you expect it to be updated. Otherwise, you run the risk of losing your customizations._
 
-= That's great but how do I filter by specific widget? =
+= That's great but I have many flex widgets in my sidebar, can I template them individually? =
 
 Well, using the Widget Template field within the widget, you can effectively filter either from the general `{theme}/flex-widget/widget.php` template or from a sidebar specific `{theme}/flex-widget/{sidebar_id}_widget.php` template.
 
@@ -101,6 +105,9 @@ The widget uses the core function `wp_get_attachment_image()` to display the ima
 2. The widget after selecting an image.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix issue where the 'Open New Window' wouldn't be able to save as 'unchecked' after saving it 'checked'.
 
 = 1.0.0 = ( Simple Image Widget Version 4.1.1 )
 * Convert all Simple Image instances to Flex

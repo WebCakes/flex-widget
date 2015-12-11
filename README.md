@@ -14,7 +14,7 @@ Using the Widget Template field, you can filter what to output based on the valu
 
 ## Installation
 
-Download a zip of the [Latest Release](https://github.com/WebCakes/flex-widget/releases/latest) ( or clone the Flex Widget repository ) and insert the files into the Wordpress plugin directory ( wp-content/plugins/flex-widget ).
+Download a zip of the [Latest Release](https://github.com/WebCakes/flex-widget/releases/latest) ( or clone the [current Flex Widget repository](https://github.com/WebCakes/flex-widget/tree/master) ) and insert the files into the Wordpress plugin directory ( wp-content/plugins/flex-widget ).
 
 Next you will need to activate the plugin in the Wordpress backend.
 

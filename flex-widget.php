@@ -11,7 +11,7 @@
  * Plugin Name: Flex Widget
  * Plugin URI: https://github.com/WebCakes/flex-widget
  * Description: A Flexible WordPress widget with templating in mind.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: WebCakes
  * Author URI: http://www.webcakes.ca/
  * License: GPL-2.0+
