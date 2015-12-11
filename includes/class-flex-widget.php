@@ -408,9 +408,10 @@ class Flex_Widget extends WP_Widget {
 		$instance = apply_filters( 'flex_widget_instance', $instance, $new_instance, $old_instance, $this->id_base );
 
 		$instance['widget_title'] = wp_strip_all_tags( $new_instance['widget_title'] );
+    $instance['new_window'] = isset( $new_instance['new_window'] );
 
 		// Optional field that can be removed via a filter.
-		foreach ( array( 'widget_template', 'image_id', 'link', 'link_title', 'link_classes', 'new_window', 'title', 'text' ) as $key ) {
+		foreach ( array( 'widget_template', 'image_id', 'link', 'link_title', 'link_classes', 'title', 'text' ) as $key ) {
 			if ( ! isset( $new_instance[ $key ] ) ) {
 				continue;
 			}
@@ -430,9 +431,6 @@ class Flex_Widget extends WP_Widget {
 					break;
 				case 'link_classes' :
 					$instance['link_classes'] = implode( ' ', array_map( 'sanitize_html_class', explode( ' ', $new_instance['link_classes'] ) ) );
-					break;
-				case 'new_window' :
-          $instance['new_window'] = isset( $new_instance['new_window'] );
 					break;
 				case 'title' :
 					$instance['title'] = stripslashes( wp_filter_post_kses( addslashes( $new_instance['title'] ) ) );
