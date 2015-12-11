@@ -14,7 +14,11 @@ Using the Widget Template field, you can filter what to output based on the valu
 
 ## Installation
 
-Clone the Flex Widget repository and insert the files into your Wordpress plugin's directory ( wp-content/plugins/flex-widget ).
+Download a zip of the [Latest Release](https://github.com/WebCakes/flex-widget/releases/latest) ( or clone the Flex Widget repository ) and insert the files into the Wordpress plugin directory ( wp-content/plugins/flex-widget ).
+
+Next you will need to activate the plugin in the Wordpress backend.
+
+Your new widget should now appear in the list of available widgets.
 
 ## FAQ
 
@@ -30,7 +34,7 @@ To use the template method, copy `widget.php` from the `/templates` directory in
 
 **Always use a [child theme](https://codex.wordpress.org/Child*Themes) to make changes if you acquired your theme from a third-party and you expect it to be updated. Otherwise, you run the risk of losing your customizations.**
 
-### That's great but how do I filter by specific widget?
+### That's great but I have many flex widgets in my sidebar, can I template them individually?
 
 Well, using the Widget Template field within the widget, you can effectively filter either from the general `{theme}/flex-widget/widget.php` template or from a sidebar specific `{theme}/flex-widget/{sidebar_id}_widget.php` template.
 
