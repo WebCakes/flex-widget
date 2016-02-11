@@ -29,26 +29,55 @@
 <?php // Image
   if ( ! empty( $image_id ) ) : ?>
 
-  <?php
-  echo $link_open;
-  echo wp_get_attachment_image( $image_id, $image_size );
-  echo $link_close;
-  ?>
+    <?php
+    echo $link_open;
+    echo wp_get_attachment_image( $image_id, $image_size );
+    echo $link_close;
+    ?>
 
 <?php endif; ?>
 
+<?php // No Image but has Link, Wrap our inputs
+  if ( ! empty( $link ) ) : ?>
 
-<?php // Title
-  if ( ! empty( $title ) ) :
-    $before_title = ( empty( $before_title ) ) ? '<h1>' : $before_title;
-    $after_title = ( empty( $after_title ) ) ? '</h1>' : $after_title;
+    <?php // Title
+      if ( ! empty( $title ) ) :
+        $before_title = ( empty( $before_title ) ) ? '<h1>' : $before_title;
+        $after_title = ( empty( $after_title ) ) ? '</h1>' : $after_title;
 
-    echo $before_title . $title . $after_title;
-  endif;
-?>
+        echo $before_title . $link_open . $title . $link_close . $after_title;
+      endif;
+    ?>
 
-<?php // Text
-  if ( ! empty( $text ) ) :
-    echo wpautop( $text );
-  endif;
-?>
+    <?php // Text
+      if ( ! empty( $text ) ) :
+        echo $link_open;
+          echo $text_raw;
+        echo $link_close;
+      endif;
+    ?>
+
+    <?php // Link
+      if ( ( empty( $title ) AND empty( $text ) ) AND !empty( $link_title ) ) :
+        echo $link_open . $link_title . $link_close;
+      endif;
+    ?>
+
+  <?php else : ?>
+
+    <?php // Title
+      if ( ! empty( $title ) ) :
+        $before_title = ( empty( $before_title ) ) ? '<h1>' : $before_title;
+        $after_title = ( empty( $after_title ) ) ? '</h1>' : $after_title;
+
+        echo $before_title . $title . $after_title;
+      endif;
+    ?>
+
+    <?php // Text
+      if ( ! empty( $text ) ) :
+        echo wpautop( $text );
+      endif;
+    ?>
+
+<?php endif; ?>
